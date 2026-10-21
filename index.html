@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rupesh Chaudhari | Notes on supply chain planning, logistics and optimization</title>
+<meta name="description" content="A weekly capsule and working models on supply chain planning, logistics improvement, digitisation and network optimization, by Rupesh Chaudhari.">
+<meta name="keywords" content="supply chain network design, network optimization, capacity planning, S&amp;OP, IBP, inventory planning, production sequencing, MIP, linear programming, Python, Blue Yonder, Supply Chain Guru">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6F6; --surface:#FFFFFF; --ink:#1D2A33; --muted:#566570;
+  --line:#D5DCDF; --accent:#0F6E8C; --flow:#C08419;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141B20; --surface:#1B242A; --ink:#E4EAED; --muted:#9AA8B1;
+    --line:#2E3A42; --accent:#5DB3CF; --flow:#E0A94A;
+    color-scheme: dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;line-height:1.2;margin:0}
+a{color:var(--accent)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--flow);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.5rem}
+.narrow{max-width:44rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:5rem 0 4rem}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);letter-spacing:-.01em}
+.name{font-weight:600;color:var(--muted);margin:0 0 1rem}
+.lede{color:var(--muted);font-size:1.15rem;margin:1.25rem 0 2rem;max-width:36rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.7rem 1.2rem;border-radius:4px;font-weight:500;text-decoration:none;border:1.5px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{color:var(--accent)}
+.net{width:100%;height:auto}
+.net .edge{stroke:var(--line);stroke-width:1.5;fill:none}
+.net .flow{stroke:var(--flow);stroke-width:2;fill:none;stroke-dasharray:6 10;animation:move 2.4s linear infinite}
+.net .plant{fill:var(--accent)}
+.net .cfa{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+.net .zone{fill:var(--muted)}
+.net text{fill:var(--muted);font:500 11px "IBM Plex Sans",sans-serif}
+@keyframes move{to{stroke-dashoffset:-32}}
+@media (prefers-reduced-motion: reduce){.net .flow{animation:none}html{scroll-behavior:auto}}
+
+/* sections */
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+section h2{font-size:1.9rem;margin-bottom:.5rem}
+.intro{color:var(--muted);margin:0 0 2.5rem;max-width:40rem}
+.case{display:grid;grid-template-columns:16rem 1fr;gap:2rem;padding:2rem 0;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:0}
+.case h3{font-size:1.3rem}
+.case .ctx{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+dl{margin:0;display:grid;grid-template-columns:6.5rem 1fr;gap:.6rem 1.25rem}
+dt{font-weight:600}
+dd{margin:0}
+.result{color:var(--ink);font-weight:500}
+.demos{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.demo{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--flow);padding:1.5rem;border-radius:4px}
+.demo h3{font-size:1.2rem;margin-bottom:.5rem}
+.demo p{margin:0 0 1rem;color:var(--muted)}
+.demo .links{display:flex;gap:1.25rem;font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.timeline{list-style:none;padding:0;margin:0}
+.timeline li{padding:.9rem 0;border-bottom:1px solid var(--line)}
+.timeline strong{display:block}
+.timeline span{color:var(--muted);font-size:.95rem}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:0;list-style:none}
+.tools li{border:1px solid var(--line);background:var(--surface);padding:.35rem .75rem;border-radius:3px;font-size:.95rem}
+.ico{width:1.5rem;height:1.5rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.icobox{display:inline-grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--accent);margin-bottom:.9rem}
+.demo .icobox{color:var(--flow)}
+.btn{display:inline-flex;align-items:center;gap:.5rem}
+.btn .ico{width:1.15rem;height:1.15rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:0 0 3.5rem}
+.stat{display:flex;gap:.8rem;align-items:center;color:var(--muted);font-size:.95rem}
+.stat .ico{color:var(--accent);width:1.8rem;height:1.8rem}
+.stat b{display:block;color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:1.25rem;font-weight:600}
+.topic{display:flex !important;align-items:center;gap:.4rem}
+.topic .ico{width:1.05rem;height:1.05rem;color:var(--flow)}
+.tools li{display:inline-flex;align-items:center;gap:.4rem}
+@media (max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+/* weekly capsule */
+.capsules{display:grid;gap:1rem}
+.capsule{background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.capsule summary{cursor:pointer;list-style:none;padding:1.25rem 1.5rem;display:grid;grid-template-columns:4.5rem 1fr auto;gap:1rem;align-items:baseline}
+.capsule summary::-webkit-details-marker{display:none}
+.capsule summary:focus-visible{outline:3px solid var(--flow);outline-offset:2px}
+.issue{font-family:"Source Serif 4",Georgia,serif;font-size:1.6rem;color:var(--flow);line-height:1}
+.capsule h3{font-size:1.2rem}
+.topic{display:block;color:var(--muted);font-size:.9rem;margin-top:.3rem}
+.toggle{color:var(--accent);font-weight:500;font-size:.95rem;white-space:nowrap}
+.capsule[open] .toggle::after{content:" (close)"}
+.cbody{padding:0 1.5rem 1.5rem calc(4.5rem + 2.5rem);max-width:52rem}
+.cbody h4{font:600 1rem "IBM Plex Sans",sans-serif;margin:1.5rem 0 .4rem}
+.cbody p,.cbody li{margin:0 0 .6rem}
+.cbody ul{padding-left:1.2rem;margin:0}
+.ask{border-left:3px solid var(--accent);padding:.6rem 1rem;margin-top:1.5rem;background:var(--bg)}
+.src{font-size:.9rem;color:var(--muted)}
+.src a{word-break:break-word}
+@media (max-width:820px){
+  .capsule summary{grid-template-columns:3rem 1fr;padding:1rem}
+  .toggle{grid-column:2}
+  .cbody{padding:0 1rem 1.25rem}
+}
+footer{padding:3rem 0 4rem;border-top:1px solid var(--line)}
+footer p{color:var(--muted)}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;padding:3rem 0 2.5rem;gap:2rem}
+  .case,.cols,.demos{grid-template-columns:1fr}
+  .case{gap:1rem}
+  dl{grid-template-columns:1fr;gap:.2rem}
+  dd{margin-bottom:.8rem}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <p class="name">Rupesh Chaudhari</p>
+      <h1>Notes and models on how supply chains are planned, moved and digitised.</h1>
+      <p class="lede">I work in supply chain planning and spend a lot of my spare time on the questions behind it: why plans break, where logistics cost really sits, and what optimization and AI can genuinely fix. This is where I write those ideas down and share the models I build to test them.</p>
+      <div class="btns">
+        <a class="btn primary" href="#capsule"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>Read the capsule</a>
+        <a class="btn ghost" href="#demos"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg>Try the models</a>
+      </div>
+    </div>
+    <svg class="net" viewBox="0 0 400 300" role="img" aria-label="Illustration of a supply network: plants feeding distribution centres that serve demand zones">
+      <path class="edge" d="M50 70 L190 60 M50 70 L190 150 M50 160 L190 150 M50 160 L190 240 M50 245 L190 240 M50 245 L190 150"/>
+      <path class="edge" d="M190 60 L340 40 M190 60 L340 95 M190 150 L340 95 M190 150 L340 150 M190 150 L340 205 M190 240 L340 205 M190 240 L340 260"/>
+      <path class="flow" d="M50 70 L190 150 L340 150"/>
+      <path class="flow" d="M50 245 L190 240 L340 260"/>
+      <path class="flow" d="M50 160 L190 60 L340 40" style="animation-delay:-1.2s"/>
+      <rect class="plant" x="40" y="60" width="20" height="20"/>
+      <rect class="plant" x="40" y="150" width="20" height="20"/>
+      <rect class="plant" x="40" y="235" width="20" height="20"/>
+      <circle class="cfa" cx="190" cy="60" r="11"/>
+      <circle class="cfa" cx="190" cy="150" r="11"/>
+      <circle class="cfa" cx="190" cy="240" r="11"/>
+      <circle class="zone" cx="340" cy="40" r="5"/><circle class="zone" cx="340" cy="95" r="5"/>
+      <circle class="zone" cx="340" cy="150" r="5"/><circle class="zone" cx="340" cy="205" r="5"/>
+      <circle class="zone" cx="340" cy="260" r="5"/>
+      <text x="22" y="292">Plants &amp; co-packers</text>
+      <text x="160" y="292">Distribution</text>
+      <text x="318" y="292">Demand</text>
+    </svg>
+  </header>
+
+  <div class="stats" aria-label="What I write about">
+    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><span><b>Planning</b>process and rhythm</span></div>
+    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>Logistics</b>cost and network flow</span></div>
+    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="10" height="10" rx="1"/><rect x="11" y="3" width="10" height="10" rx="1" stroke-dasharray="2 2"/></svg><span><b>Digitisation</b>twins, data and AI</span></div>
+    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg><span><b>Optimization</b>models I build and share</span></div>
+  </div>
+
+  <section id="capsule">
+    <h2>The Planning Capsule</h2>
+    <p class="intro">A short weekly note on planning process, logistics and supply chain digitisation. Each one pairs published research with what I’ve seen work on the ground, and ends with a question I’d like your view on.</p>
+    <div class="capsules">
+
+      <details class="capsule" open>
+        <summary>
+          <span class="issue">#4</span>
+          <span><h3>Agentic AI in planning: what to hand over first, and what to keep</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg>Open discussion</span></span>
+          <span class="toggle">Read</span>
+        </summary>
+        <div class="cbody">
+          <h4>What the research says</h4>
+          <p>Gartner expects agentic AI features to go from about 5% of enterprises using supply chain software in 2025 to 60% by 2030, and stresses that leaders must decide how much human oversight each decision needs, especially early on.</p>
+          <p>The same firm is also warning against the hype. Its analysts say vendors promising fully autonomous end-to-end planning before 2027 are overselling, and that the near-term priority is process discipline and clear decision rules rather than autonomy. Gartner has separately predicted that over 40% of agentic AI projects will be cancelled by the end of 2027 because of cost, unclear value or weak controls.</p>
+          <h4>My take</h4>
+          <p>An agent can only automate a decision you can already write down. So the first candidates are not the glamorous ones:</p>
+          <ul>
+            <li>Daily deployment exceptions: which depot gets stock when there isn’t enough for everyone, using an allocation rule the business has already agreed.</li>
+            <li>Order and PO triage: flag, rank and draft the expedite or reschedule, then a planner approves.</li>
+            <li>Data hygiene: catching master data errors (pack sizes, lead times, MOQs) before they reach the plan.</li>
+          </ul>
+          <p>What I’d keep with people for now: capacity trade-offs, co-packer allocation and anything that changes a customer commitment. These involve judgement across functions that no rulebook fully captures.</p>
+          <p>A simple ladder works: the agent recommends, then acts with approval, then acts inside guardrails. Move up a rung only when the recommendations have been right for a few weeks running.</p>
+          <div class="ask"><strong>Your view:</strong> which planning decision in your team is rule-based enough to automate tomorrow, and which would you never hand over?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-forecasts-supply-chain-management-software-with-agentic-ai-will-grow-to-53-billion-in-spend-by-2030">Gartner press release, Apr 2026</a>; <a href="https://www.scdigest.com/ontarget/26-07-21.php?CID=23160">Supply Chain Digest on Gartner Symposium Europe, Jul 2026</a>; <a href="https://www.workd.com/insights/articles/agentic-ai-trends-2026/">summary of Gartner’s Jun 2025 cancellation prediction</a>.</p>
+        </div>
+      </details>
+
+      <details class="capsule">
+        <summary>
+          <span class="issue">#3</span>
+          <span><h3>Digital twin or just a network model? A four-question test</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="10" height="10" rx="1"/><rect x="11" y="3" width="10" height="10" rx="1" stroke-dasharray="2 2"/></svg>Supply chain digitisation</span></span>
+          <span class="toggle">Read</span>
+        </summary>
+        <div class="cbody">
+          <h4>What the research says</h4>
+          <p>The Digital Twin Consortium defines a twin as a virtual copy of real entities and processes, kept in sync with them at a set frequency and level of detail. McKinsey partners note the term is used loosely, and that what separates a twin is its live link to real data.</p>
+          <p>McKinsey argues twins let companies move from rules of thumb to detailed optimization, by joining many separate models into one view of trade-offs across the chain. Reported results include one OEM cutting freight and damage costs by 8%, and IDC expects 35% of the world’s largest 2,000 companies to use supply chain tools with twin features by 2027.</p>
+          <h4>My take</h4>
+          <p>Most “digital twins” I’ve seen are a network model built once for a project and never touched again. Before buying a platform, ask four questions:</p>
+          <ul>
+            <li>How often does it refresh with actual demand, costs and capacity? Yearly is a study, monthly is a tool.</li>
+            <li>Which recurring decision does it inform? If you can’t name one, it’s a poster.</li>
+            <li>Who opens it every week? A twin with one expert user dies when that person leaves.</li>
+            <li>Does it learn? Compare what the model said would happen with what did, and fix the gaps.</li>
+          </ul>
+          <p>In my experience, a network optimization model refreshed monthly with ERP actuals and used in the S&amp;OP meeting gets you most of the value for a fraction of the cost.</p>
+          <div class="ask"><strong>Your view:</strong> does your company have a twin in use, or a model that was built once? What stopped it from becoming a habit?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://informs-sim.org/wsc23papers/122.pdf">Winter Simulation Conference tutorial, 2023</a>; <a href="https://www.mckinsey.com/~/media/mckinsey/email/onpoint/2022/10/2022-10-31a.html">McKinsey, Oct 2022</a>; <a href="https://www.mckinsey.com/capabilities/operations/our-insights/digital-twins-the-key-to-unlocking-end-to-end-supply-chain-growth">McKinsey, Digital twins and end-to-end supply chain growth</a>; <a href="https://www.ryder.com/en-us/insights/blogs/logistics/digital-twin-revolution">Ryder, citing McKinsey and IDC</a>.</p>
+        </div>
+      </details>
+
+      <details class="capsule">
+        <summary>
+          <span class="issue">#2</span>
+          <span><h3>India’s logistics cost is about 8%, not 14%. Now what?</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Logistics improvement</span></span>
+          <span class="toggle">Read</span>
+        </summary>
+        <div class="cbody">
+          <h4>What the research says</h4>
+          <p>The first official estimate, by NCAER for DPIIT in September 2025, puts India’s logistics cost at 7.97% of GDP for 2023–24, replacing the long-quoted 13–14%. That’s about ₹24 lakh crore, or 9.09% of non-services output, based on national data and over 3,500 surveys of transporters, warehouses and shippers.</p>
+          <p>Road transport accounts for about 42% of the total, warehousing is the largest cost outside transport, and the goal is to get closer to 7% of GDP by 2030.</p>
+          <h4>My take</h4>
+          <p>If the national gap is smaller than we thought, the big wins won’t come from waiting for new corridors. They’ll come from inside our own networks:</p>
+          <ul>
+            <li>Measure logistics cost per case by lane, split into primary and secondary. National averages hide the 20% of lanes that cost the most.</li>
+            <li>Fix vehicle fill and empty return trips before negotiating freight rates. A truck running 80% full costs more per case than a cheaper truck running full.</li>
+            <li>Revisit the depot footprint every year. Demand moves faster than warehouse leases do.</li>
+            <li>Don’t assume rail is cheaper. Its rate advantage is eaten up by shunting and handling at both ends: the study finds rail only beats road beyond about 600 km, or around 1,000 km when first and last mile stretch to 100 km each, and heavy trailers already undercut rail’s average rate. For most FMCG lanes, a well-loaded truck wins.</li>
+          </ul>
+          <div class="ask"><strong>Your view:</strong> does your company know its logistics cost as a share of sales by lane? If not, what’s the hardest number to get?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://ncaer.org/wp-content/uploads/2025/09/NCAER_Logistic_Study_Report_Sept2025.pdf">NCAER, Assessment of Logistics Cost in India, Sep 2025</a>; <a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251127708001.pdf">PIB, Nov 2025</a>; <a href="https://www.business-standard.com/amp/opinion/columns/confidence-in-india-s-logistics-cost-the-story-of-economic-transition-125112001452_1.html">Business Standard, Nov 2025</a>; <a href="https://www.policyedge.in/p/dpiit-releases-first-official-assessment">The Policy Edge, Sep 2025</a>; <a href="https://www.businesstoday.in/india/story/road-cheaper-than-rail-for-moving-heavy-logistics-dpiit-495095-2025-09-22">Business Today on rail vs road, Sep 2025</a>.</p>
+        </div>
+      </details>
+
+      <details class="capsule">
+        <summary>
+          <span class="issue">#1</span>
+          <span><h3>The missing weekly meeting: why S&amp;OE matters as much as S&amp;OP</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Planning process improvement</span></span>
+          <span class="toggle">Read</span>
+        </summary>
+        <div class="cbody">
+          <h4>What the research says</h4>
+          <p>Gartner describes sales and operations execution (S&amp;OE) as a separate process from S&amp;OP that carries out the agreed plan and handles short-term problems. Gartner reports that over half of companies that introduced S&amp;OE saw clear gains in inventory, asset utilization and schedule adherence.</p>
+          <p>Yet few do it well. In a 2021 AIMMS survey, only 10% of respondents were very satisfied with their S&amp;OE, and close to 40% ran it on spreadsheets. Gartner also finds S&amp;OE meetings lose people when they turn into order reviews and status tracking.</p>
+          <h4>My take</h4>
+          <p>Most companies already hold this meeting. They just call it the daily or weekly review, and in practice two things go wrong.</p>
+          <p><strong>It turns into firefighting for availability.</strong> The agenda shrinks to which SKUs are short and where. Planners spend most of their time explaining connectivity: where the stock is, what’s in transit and why it isn’t reaching the market. That leaves little time to decide what to change.</p>
+          <p><strong>The planning team becomes the face of it, and accountability fades.</strong> In most organisations, other departments stop attending because planning “owns” the meeting. Planning ends up answering for production misses, sales spikes and transport delays it doesn’t control, and decisions don’t stick because the people who must act on them weren’t in the room.</p>
+          <p>A few changes help:</p>
+          <ul>
+            <li>Fix the horizon at roughly the next 4 to 13 weeks. Anything beyond goes to S&amp;OP; anything inside a week goes to the daily call.</li>
+            <li>Make stock and in-transit visibility self-serve: a shared dashboard everyone reads before the meeting, so no meeting time goes on explaining where stock is.</li>
+            <li>Bring only exceptions: gaps between plan and reality above an agreed threshold, each with an owner and two options.</li>
+            <li>Have each function own and present its own exceptions: production for line misses, sales for demand changes, logistics for transit delays. Planning facilitates rather than answering for everyone.</li>
+            <li>Keep a decision log with the owner’s name against each action. If a meeting ends without a written decision, it was a status update.</li>
+            <li>Track whether decisions held: did the plan you agreed on Monday survive to Friday?</li>
+          </ul>
+          <div class="ask"><strong>Your view:</strong> who should own S&amp;OE in a consumer goods business: planning, operations or sales?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://riverlogic.com/?p=3114">River Logic, citing Gartner</a>; <a href="https://www.aimms.com/?p=3883">AIMMS S&amp;OE survey, 2021</a>; <a href="https://www.gartner.com/en/documents/6577102">Gartner, Best Practices for Conducting S&amp;OE Meetings, Jun 2025</a>.</p>
+        </div>
+      </details>
+
+    </div>
+    <p style="margin-top:1.5rem">New capsule every week. Disagree with one? <a href="https://www.linkedin.com/in/rupesh-chaudhari">Tell me on LinkedIn</a>.</p>
+  </section>
+
+  <section id="work">
+    <h2>From the field</h2>
+    <p class="intro">Problems I’ve worked on that shaped how I think about planning. Companies are kept anonymous; the lessons are the point.</p>
+
+    <article class="case">
+      <div>
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span>
+        <h3>Network and capacity planning for a national bottler</h3>
+        <p class="ctx">14 plant and co-packer sites, 7 distribution centres, 30M cases a year</p>
+      </div>
+      <dl>
+        <dt>Problem</dt><dd>The network was running close to capacity ahead of peak season. The business needed to decide where to source each product, how much to give co-packers, and when and where to add capacity.</dd>
+        <dt>Approach</dt><dd>Built network optimization models (MIP) in Supply Chain Guru and Python covering sourcing, co-pack allocation and greenfield and brownfield expansion. Ran scenarios with finance and operations to agree the plan.</dd>
+        <dt>Outcome</dt><dd class="result">₹27 Cr in savings, a 2.35% cut in supply chain cost, and +2% asset utilization, plus an agreed capacity expansion roadmap.</dd>
+      
+        <dt>Lesson</dt><dd>A network model earns trust when finance and operations help build the scenarios, not when the answer is mathematically optimal.</dd></dl>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 4.5 9-4.5" opacity=".55"/></svg></span>
+        <h3>Planning system rollout and centre of excellence</h3>
+        <p class="ctx">Blue Yonder APS, national scope</p>
+      </div>
+      <dl>
+        <dt>Problem</dt><dd>Planning ran on spreadsheets and varied by region, so plans were slow to build and hard to compare.</dd>
+        <dt>Approach</dt><dd>Led a five-module Blue Yonder deployment including MRP (SCS, ESP, SEQ, IO and DRP models). Redesigned the planning process and trained planners across regions.</dd>
+        <dt>Outcome</dt><dd class="result">One planning system in use nationally and 12 process improvements put into practice.</dd>
+      
+        <dt>Lesson</dt><dd>Software goes live in months; planning habits take a year. Redesign the process first, then the screens.</dd></dl>
+    </article>
+
+    <article class="case">
+      <div>
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span>
+        <h3>Regional supply planning</h3>
+        <p class="ctx">140+ SKUs, multi-plant region</p>
+      </div>
+      <dl>
+        <dt>Problem</dt><dd>Frequent stock-outs and high freight costs across a large, seasonal product range.</dd>
+        <dt>Approach</dt><dd>Reset inventory norms and the deployment plan, and optimized the transport and 3PL network.</dd>
+        <dt>Outcome</dt><dd class="result">95%+ service level, 30% fewer stock-outs and ₹2.5 Cr in freight savings.</dd>
+      
+        <dt>Lesson</dt><dd>Most of the freight saving came from load and lane design, not from negotiating rates.</dd></dl>
+    </article>
+  </section>
+
+  <section id="demos">
+    <h2>Model demos</h2>
+    <p class="intro">Working models on synthetic data. Change the inputs and see how the plan changes.</p>
+    <div class="demos">
+      <div class="demo">
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span>
+        <h3>Network optimization</h3>
+        <p>A fictional multi-plant network. Pick which plants supply which markets, and whether to open new capacity, at the lowest total cost.</p>
+        <div class="links"><a href="#">Open demo</a></div>
+      </div>
+      <div class="demo">
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h6"/><path d="M17 4l3 2-3 2M20 16l-3 2 3 2"/></svg></span>
+        <h3>Production planning and sequencing</h3>
+        <p>Plans what each line makes and in what order, trading off changeover time against service level.</p>
+        <div class="links"><a href="#">Open demo</a></div>
+      </div>
+      <div class="demo">
+        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg></span>
+        <h3>Spares inventory optimization</h3>
+        <p>Sets stock levels for service spares with uncertain demand, balancing availability against inventory cost.</p>
+        <div class="links"><a href="#">Open demo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="narrow">
+      <h2>Why I write this</h2>
+      <p>I’ve spent close to a decade planning supply chains for beverage companies, from regional supply plans to national network and capacity decisions. Along the way I noticed that the most useful ideas rarely come from a single tool or textbook. They come from asking why something keeps going wrong, then testing a fix.</p>
+      <p>This site is my notebook for that. Each week I pick one question about planning, logistics or digitisation, read what the research says, and add what I’ve seen in practice. The models here are side projects I build to understand a problem properly. If something resonates, or you think I’ve got it wrong, I’d genuinely like to hear it.</p>
+      <h3 style="font-size:1.2rem;margin:2rem 0 1rem">What I build with</h3>
+      <ul class="tools">
+          <li>Python (MIP/LP)</li><li>Stochastic optimization</li><li>Statistical modelling</li>
+          <li>Supply Chain Guru</li><li>Blue Yonder</li><li>Dynamics 365</li>
+          <li>S&amp;OP / IBP</li><li>Network design</li><li>Inventory planning</li>
+        </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Let’s talk supply chain</h2>
+    <p>Comments, counter-arguments and topic ideas for the next capsule are always welcome.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:your.email@example.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Write to me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/rupesh-chaudhari"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
