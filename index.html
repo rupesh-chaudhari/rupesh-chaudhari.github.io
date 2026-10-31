@@ -89,6 +89,20 @@ dd{margin:0}
 .topic .ico{width:1.05rem;height:1.05rem;color:var(--flow)}
 .tools li{display:inline-flex;align-items:center;gap:.4rem}
 @media (max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+/* capsule analytics */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1rem 0 1.25rem}
+.nums div{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:.8rem .9rem}
+.nums b{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:1.45rem;color:var(--accent);line-height:1.15}
+.nums span{display:block;font-size:.85rem;color:var(--muted);line-height:1.4;margin-top:.3rem}
+.chart{border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem;margin:1.25rem 0;background:var(--bg)}
+.ctitle{font-weight:600;margin:0 0 .8rem !important}
+.bar{display:grid;grid-template-columns:minmax(8rem,15rem) 1fr 3.5rem;gap:.75rem;align-items:center;margin:.45rem 0;font-size:.9rem}
+.bt{height:.8rem;background:var(--line);border-radius:2px;overflow:hidden}
+.bf{display:block;height:100%;background:var(--accent)}
+.bf.hl{background:var(--flow)}
+.bv{font-weight:600;text-align:right}
+.cnote{font-size:.8rem;color:var(--muted);margin:.7rem 0 0 !important}
+@media (max-width:820px){.nums{grid-template-columns:1fr}.bar{grid-template-columns:1fr 3rem}.bar .bt{grid-column:1/-1;grid-row:2}}
 /* weekly capsule */
 .capsules{display:grid;gap:1rem}
 .capsule{background:var(--surface);border:1px solid var(--line);border-radius:4px}
@@ -172,25 +186,53 @@ footer p{color:var(--muted)}
 
       <details class="capsule" open>
         <summary>
-          <span class="issue">#4</span>
-          <span><h3>Agentic AI in planning: what to hand over first, and what to keep</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg>Open discussion</span></span>
+          <span class="issue">#5</span>
+          <span><h3>The return trip: the supply chain nobody plans</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>Reverse logistics, across industries</span></span>
           <span class="toggle">Read</span>
         </summary>
         <div class="cbody">
-          <h4>What the research says</h4>
-          <p>Gartner expects agentic AI features to go from about 5% of enterprises using supply chain software in 2025 to 60% by 2030, and stresses that leaders must decide how much human oversight each decision needs, especially early on.</p>
-          <p>The same firm is also warning against the hype. Its analysts say vendors promising fully autonomous end-to-end planning before 2027 are overselling, and that the near-term priority is process discipline and clear decision rules rather than autonomy. Gartner has separately predicted that over 40% of agentic AI projects will be cancelled by the end of 2027 because of cost, unclear value or weak controls.</p>
+          <h4>What the data says</h4>
+          <div class="nums"><div><b>~USD 35 bn</b><span>India reverse logistics market, 2025; forecast to more than double by 2031</span></div><div><b>₹1,900 cr</b><span>yearly reverse-handling cost GS1 India links to poor product data</span></div><div><b>95%+</b><span>returnable beer bottles collected in Japan, about 3 trips a year each</span></div></div><p>Reverse flow is no longer a side process. India’s reverse logistics market was estimated at about USD 35 billion in 2025, with transportation the largest cost block at roughly half the market. GS1 India estimates poor product data costs the sector close to ₹5,000 crore a year, about ₹1,900 crore of it in reverse handling and processing.</p>
+<ul>
+<li><strong>Quick commerce:</strong> industry estimates put grocery and FMCG return rates at 6–12%, reverse pickups at ₹60–120 an order, and packaging damage at nearly a fifth of returns in snacks, beverages and cosmetics. Refunds go out in minutes; inspection and stock reconciliation at the dark store take far longer.</li>
+<li><strong>E-commerce:</strong> industry trackers put D2C return-to-origin (RTO) rates at roughly 20–35%, with cash-on-delivery orders far riskier than prepaid ones, and each failed parcel costing ₹150–300 in direct logistics. Blue Dart calls RTO a bigger margin problem than customer returns.</li>
+<li><strong>Breweries and returnable glass:</strong> United Breweries once met 75% of its bottling needs with second-hand bottles, with bottles making up 40% of its costs. Middlemen hoarding empties pushed used bottle prices up 30%, which is why brewers moved to embossed, company-specific bottles. Japan shows the other end: a ¥5 deposit, over 95% collected, each bottle back at the plant in about four months.</li>
+<li><strong>Packaged goods and regulation:</strong> the 2026 plastic waste amendment sets the first reuse targets for rigid plastic packaging (10% for 0.9–4.9 litre containers, 70% for large water packs, 10% for other large packs), alongside recycled content rising from 30% to 60% by 2028–29.</li>
+<li><strong>General trade FMCG and pharma:</strong> damaged and near-expiry stock comes back from distributors and retailers, usually settled through credit notes, then sits in a depot corner waiting for a decision.</li>
+</ul><div class="chart" role="img" aria-label="How returnable bottle float grows as the return cycle slips"><p class="ctitle">How returnable bottle float grows as the return cycle slips</p><div class="bar"><span>4-week cycle</span><span class="bt"><span class="bf" style="width:50%"></span></span><span class="bv">100</span></div><div class="bar"><span>5-week cycle</span><span class="bt"><span class="bf" style="width:62%"></span></span><span class="bv">125</span></div><div class="bar"><span>6-week cycle</span><span class="bt"><span class="bf hl" style="width:75%"></span></span><span class="bv">150</span></div><div class="bar"><span>8-week cycle</span><span class="bt"><span class="bf hl" style="width:100%"></span></span><span class="bv">200</span></div><p class="cnote">Bottles needed in the market, indexed to a 4-week cycle. Float ≈ weekly fills × cycle time in weeks. My illustration, not sourced data.</p></div>
           <h4>My take</h4>
-          <p>An agent can only automate a decision you can already write down. So the first candidates are not the glamorous ones:</p>
-          <ul>
-            <li>Daily deployment exceptions: which depot gets stock when there isn’t enough for everyone, using an allocation rule the business has already agreed.</li>
-            <li>Order and PO triage: flag, rank and draft the expedite or reschedule, then a planner approves.</li>
-            <li>Data hygiene: catching master data errors (pack sizes, lead times, MOQs) before they reach the plan.</li>
-          </ul>
-          <p>What I’d keep with people for now: capacity trade-offs, co-packer allocation and anything that changes a customer commitment. These involve judgement across functions that no rulebook fully captures.</p>
-          <p>A simple ladder works: the agent recommends, then acts with approval, then acts inside guardrails. Move up a rung only when the recommendations have been right for a few weeks running.</p>
+          <p>Every company plans the forward flow down to the SKU and the day. The reverse flow gets handled, not planned. Four habits change that:</p>
+<ul>
+<li><strong>Forecast returns like demand.</strong> Empties coming back are past sales, delayed by the cycle time and reduced by the return rate. If the cycle slips from 4 weeks to 6, you need 50% more bottles in the market, usually right before peak season, when glass is hardest to buy.</li>
+<li><strong>Use the empty truck.</strong> Most forward trucks come back empty or part-loaded. Putting empties, crates and returns on the return leg is the cheapest reverse network there is.</li>
+<li><strong>Decide at first touch.</strong> Resell, rework, liquidate or scrap should be decided where the item is first received. Every kilometre a scrap item travels to a central warehouse is pure loss.</li>
+<li><strong>Treat returns as a signal.</strong> Near-expiry returns are a forecasting or deployment error showing up late. Damage returns point to packaging or handling. RTOs point to address and order-validation gaps. Feed each back into the forward plan.</li>
+</ul>
+          <div class="ask"><strong>Your view:</strong> in your industry, who owns the return flow, and does anyone actually forecast it?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.researchandmarkets.com/reports/6260570/india-reverse-logistics-market-share-analysis">Research and Markets / Mordor, Jun 2026</a>; <a href="https://base.com/en-IN/blog/?p=19672">Base, returns in quick commerce</a>; <a href="https://www.clickpost.ai/blog/rto-reduction-tools">ClickPost, RTO benchmarks 2026</a>; <a href="https://britglass.org.uk/knowledge-base/digital-library-and-information-services/india-ub-sabmiller-move-patent-bottles">Glassonline via British Glass, 2010</a>; <a href="https://j4ce.env.go.jp/en/casestudy/101">Japan Partnership for Circular Economy</a>; <a href="https://www.drishtiias.com/daily-updates/daily-news-analysis/plastic-waste-management-rules-2026/print_manually">Plastic Waste Management Rules 2026 summary</a>.</p>
+        </div>
+      </details>
+
+      <details class="capsule">
+        <summary>
+          <span class="issue">#4</span>
+          <span><h3>Onboard the AI agent like a trainee planner</h3><span class="topic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg>Open discussion</span></span>
+          <span class="toggle">Read</span>
+        </summary>
+        <div class="cbody">
+          <h4>What the data says</h4>
+          <div class="nums"><div><b>83%</b><span>of large firms surveyed have spent USD 3M+ automating supply chain planning</span></div><div><b>5%</b><span>will make even 10% of planning decisions autonomously by 2030, per Gartner</span></div><div><b>~80%</b><span>of consumer goods companies still run traditional or collaborative S&amp;OP</span></div></div><p>The money is moving faster than the capability. In a Gartner survey of 243 senior leaders at large companies, 83% had spent at least USD 3 million on automating supply chain planning, yet Gartner predicts only 5% of organisations will make at least 10% of planning decisions autonomously by 2030. Its own view of where autonomy will come first is telling: routine decisions such as replenishment and order prioritisation, while network design and inventory policy stay with people.</p>
+<p>Adoption of the features is still set to rise fast, from about 5% of companies using supply chain software in 2025 to 60% by 2030, with Gartner stressing human oversight in the early years. McKinsey finds around 80% of consumer goods companies still run traditional or collaborative S&amp;OP, but the few further along report up to 20% less inventory, up to 10% lower supply chain cost and up to 4% more revenue. Meanwhile Gartner expects over 40% of agentic AI projects to be cancelled by the end of 2027 over cost, unclear value or weak controls.</p><div class="chart" role="img" aria-label="The autonomy gap: spending vs. real autonomous decisions"><p class="ctitle">The autonomy gap: spending vs. real autonomous decisions</p><div class="bar"><span>Spent USD 3M+ on planning automation</span><span class="bt"><span class="bf" style="width:83%"></span></span><span class="bv">83%</span></div><div class="bar"><span>Expected to use agentic AI features by 2030</span><span class="bt"><span class="bf" style="width:60%"></span></span><span class="bv">60%</span></div><div class="bar"><span>Will make 10%+ of planning decisions autonomously by 2030</span><span class="bt"><span class="bf hl" style="width:5%"></span></span><span class="bv">5%</span></div><p class="cnote">Gartner surveys and predictions, 2025–2026. Different bases, shown side by side to illustrate the gap.</p></div>
+          <h4>My take</h4>
+          <p>An agent can only automate a decision you can already write down. That’s why spending isn’t the bottleneck: most teams have never written down how they decide. So I’d onboard an agent the way I’d onboard a trainee planner.</p>
+<ul>
+<li><strong>Week one work first:</strong> daily deployment exceptions using allocation rules the business already agreed; order and PO triage where the agent flags, ranks and drafts and a planner approves; and master data checks on pack sizes, lead times and MOQs before errors reach the plan.</li>
+<li><strong>Keep with people for now:</strong> capacity trade-offs, co-packer allocation, network and inventory policy, and anything that changes a customer commitment.</li>
+<li><strong>Promote on evidence:</strong> recommend, then act with approval, then act within guardrails. Track the agent’s acceptance rate and the error rate of accepted actions, and move up a rung only after several weeks above an agreed threshold.</li>
+<li><strong>Measure what it frees up:</strong> if planners save two hours a day, decide in advance what that time goes to. Otherwise the saving disappears into more firefighting.</li>
+</ul>
           <div class="ask"><strong>Your view:</strong> which planning decision in your team is rule-based enough to automate tomorrow, and which would you never hand over?</div>
-          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-forecasts-supply-chain-management-software-with-agentic-ai-will-grow-to-53-billion-in-spend-by-2030">Gartner press release, Apr 2026</a>; <a href="https://www.scdigest.com/ontarget/26-07-21.php?CID=23160">Supply Chain Digest on Gartner Symposium Europe, Jul 2026</a>; <a href="https://www.workd.com/insights/articles/agentic-ai-trends-2026/">summary of Gartner’s Jun 2025 cancellation prediction</a>.</p>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-predicts-only-5-percent-of-organizations-will-make-at-least-10-percent-of-supply-chain-planning-decisions-autonomously-by-2030">Gartner press release, Sep 2026</a>; <a href="https://www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-forecasts-supply-chain-management-software-with-agentic-ai-will-grow-to-53-billion-in-spend-by-2030">Gartner press release, Apr 2026</a>; <a href="https://www.mckinsey.com/uk/our-insights/autonomous-supply-chain-planning-for-consumer-goods-companies">McKinsey, autonomous planning for consumer goods</a>; <a href="https://www.scdigest.com/ontarget/26-07-21.php?CID=23160">Supply Chain Digest, Jul 2026</a>; <a href="https://www.workd.com/insights/articles/agentic-ai-trends-2026/">summary of Gartner’s agentic AI cancellation forecast</a>.</p>
         </div>
       </details>
 
@@ -201,20 +243,20 @@ footer p{color:var(--muted)}
           <span class="toggle">Read</span>
         </summary>
         <div class="cbody">
-          <h4>What the research says</h4>
-          <p>The Digital Twin Consortium defines a twin as a virtual copy of real entities and processes, kept in sync with them at a set frequency and level of detail. McKinsey partners note the term is used loosely, and that what separates a twin is its live link to real data.</p>
-          <p>McKinsey argues twins let companies move from rules of thumb to detailed optimization, by joining many separate models into one view of trade-offs across the chain. Reported results include one OEM cutting freight and damage costs by 8%, and IDC expects 35% of the world’s largest 2,000 companies to use supply chain tools with twin features by 2027.</p>
+          <h4>What the data says</h4>
+          <div class="nums"><div><b>60%</b><span>of supply chain leaders piloting or planning a digital supply chain twin (Gartner, 2023)</span></div><div><b>29%</b><span>of supply chain organisations have built the capabilities needed for the future (Gartner, 2025)</span></div><div><b>90%</b><span>of supply chain leaders say they lack the talent for their digital goals (McKinsey)</span></div></div><p>Interest is high and follow-through is thin. In a Gartner survey of 380 supply chain leaders, 60% were piloting or planning a digital supply chain twin. Yet in a 2025 Gartner study, only 29% of supply chain organisations had built most of the capabilities they’ll need, and most leaders had not yet invested in real-time visibility or digital twins, planning to do so within three to five years. McKinsey adds the constraint that usually decides it: 90% of supply chain leaders say they lack the talent and skills for their digital goals.</p>
+<p>The definition matters. The Digital Twin Consortium describes a twin as a virtual copy kept in sync with the real system at a set frequency and level of detail; McKinsey stresses that the live data link is what separates it from a one-off model. Reported gains include one OEM cutting freight and damage costs by 8%.</p><div class="chart" role="img" aria-label="How supply chain leaders rate emerging tech as important and disruptive"><p class="ctitle">How supply chain leaders rate emerging tech as important and disruptive</p><div class="bar"><span>Artificial intelligence</span><span class="bt"><span class="bf" style="width:52%"></span></span><span class="bv">52%</span></div><div class="bar"><span>Digital supply chain twin</span><span class="bt"><span class="bf hl" style="width:40%"></span></span><span class="bv">40%</span></div><div class="bar"><span>Digital twin of the customer</span><span class="bt"><span class="bf" style="width:27%"></span></span><span class="bv">27%</span></div><p class="cnote">Gartner survey of 380 supply chain leaders, 2023.</p></div>
           <h4>My take</h4>
-          <p>Most “digital twins” I’ve seen are a network model built once for a project and never touched again. Before buying a platform, ask four questions:</p>
-          <ul>
-            <li>How often does it refresh with actual demand, costs and capacity? Yearly is a study, monthly is a tool.</li>
-            <li>Which recurring decision does it inform? If you can’t name one, it’s a poster.</li>
-            <li>Who opens it every week? A twin with one expert user dies when that person leaves.</li>
-            <li>Does it learn? Compare what the model said would happen with what did, and fix the gaps.</li>
-          </ul>
-          <p>In my experience, a network optimization model refreshed monthly with ERP actuals and used in the S&amp;OP meeting gets you most of the value for a fraction of the cost.</p>
+          <p>Most “digital twins” I’ve seen are network models built once for a project and never touched again. Before buying a platform, I’d ask four questions:</p>
+<ul>
+<li><strong>How often does it refresh with actuals?</strong> Yearly is a study. Monthly is a tool. Weekly starts to be a twin.</li>
+<li><strong>Which recurring decision does it inform?</strong> If you can’t name one, it’s a poster.</li>
+<li><strong>Who opens it every week?</strong> A twin with one expert user dies when that person leaves, which is exactly the talent gap McKinsey describes.</li>
+<li><strong>Does it learn?</strong> Compare what the model predicted with what happened, and fix the gaps. Forecast-versus-actual on cost per case and service by lane is the simplest scorecard.</li>
+</ul>
+<p>In my experience, a network optimisation model refreshed monthly with ERP actuals and used in the S&amp;OP meeting gets most of the value for a fraction of the cost. Build the habit first, then the platform.</p>
           <div class="ask"><strong>Your view:</strong> does your company have a twin in use, or a model that was built once? What stopped it from becoming a habit?</div>
-          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://informs-sim.org/wsc23papers/122.pdf">Winter Simulation Conference tutorial, 2023</a>; <a href="https://www.mckinsey.com/~/media/mckinsey/email/onpoint/2022/10/2022-10-31a.html">McKinsey, Oct 2022</a>; <a href="https://www.mckinsey.com/capabilities/operations/our-insights/digital-twins-the-key-to-unlocking-end-to-end-supply-chain-growth">McKinsey, Digital twins and end-to-end supply chain growth</a>; <a href="https://www.ryder.com/en-us/insights/blogs/logistics/digital-twin-revolution">Ryder, citing McKinsey and IDC</a>.</p>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.scmr.com/article/the-power-of-digital-twins-is-being-lost-as-customers-are-left-behind">SCMR on Gartner digital twin survey, 2023</a>; <a href="https://www.gartner.com/en/newsroom/press-releases/2025-02-18-gartner-survey-shows-only-29-percent-of-supply-chain-organizations-have-built-necessary-capabilities-to-deliver-on-future-performance">Gartner press release, Feb 2025</a>; <a href="https://o9solutions.com/articles/what-is-supply-chain-planning">o9, citing McKinsey surveys</a>; <a href="https://informs-sim.org/wsc23papers/122.pdf">Winter Simulation Conference tutorial, 2023</a>; <a href="https://www.mckinsey.com/capabilities/operations/our-insights/digital-twins-the-key-to-unlocking-end-to-end-supply-chain-growth">McKinsey on digital twins</a>; <a href="https://www.ryder.com/en-us/insights/blogs/logistics/digital-twin-revolution">Ryder, citing McKinsey</a>.</p>
         </div>
       </details>
 
@@ -225,19 +267,21 @@ footer p{color:var(--muted)}
           <span class="toggle">Read</span>
         </summary>
         <div class="cbody">
-          <h4>What the research says</h4>
-          <p>The first official estimate, by NCAER for DPIIT in September 2025, puts India’s logistics cost at 7.97% of GDP for 2023–24, replacing the long-quoted 13–14%. That’s about ₹24 lakh crore, or 9.09% of non-services output, based on national data and over 3,500 surveys of transporters, warehouses and shippers.</p>
-          <p>Road transport accounts for about 42% of the total, warehousing is the largest cost outside transport, and the goal is to get closer to 7% of GDP by 2030.</p>
+          <h4>What the data says</h4>
+          <div class="nums"><div><b>7.97%</b><span>of GDP: India’s first official logistics cost estimate, 2023–24 (~₹24 lakh crore)</span></div><div><b>~70%</b><span>of India’s freight moves by road</span></div><div><b>37–38 km/h</b><span>average truck speed on highways, barely up from a decade ago</span></div></div><p>The first official estimate, by NCAER for DPIIT, puts India’s logistics cost at 7.97% of GDP for 2023–24, replacing the long-quoted 13–14%. Road accounts for about 42% of that cost, warehousing is the biggest cost outside transport, and the target is closer to 7% by 2030.</p>
+<p>Rail is not the easy answer. Rail averages ₹1.96 per tonne-km only when first and last mile are left out, and heavy trailers already come in at ₹1.51. Rail wins only beyond about 600 km, or about 1,000 km once the road legs at each end reach 100 km.</p>
+<p>The bigger gap is time. A government study found trucks average just 37–38 km/h on highways and 47–48 km/h on expressways, against 65–70 km/h in the US and China, and the road ministry has flagged loading and unloading delays as the reason. Utilisation is the other lever: in one 3PL case, concentrating trucks on lanes with two-way demand lifted utilisation from 68% to 82% and cut empty kilometres by 21%.</p><div class="chart" role="img" aria-label="Average commercial vehicle speed (km/h)"><p class="ctitle">Average commercial vehicle speed (km/h)</p><div class="bar"><span>India, highways</span><span class="bt"><span class="bf hl" style="width:54%"></span></span><span class="bv">37–38</span></div><div class="bar"><span>India, expressways</span><span class="bt"><span class="bf hl" style="width:68%"></span></span><span class="bv">47–48</span></div><div class="bar"><span>US and China</span><span class="bt"><span class="bf" style="width:96%"></span></span><span class="bv">65–70</span></div><p class="cnote">Government study as reported in 2026. India’s roads are built for 100–120 km/h; the gap is mostly waiting, not driving.</p></div>
           <h4>My take</h4>
-          <p>If the national gap is smaller than we thought, the big wins won’t come from waiting for new corridors. They’ll come from inside our own networks:</p>
-          <ul>
-            <li>Measure logistics cost per case by lane, split into primary and secondary. National averages hide the 20% of lanes that cost the most.</li>
-            <li>Fix vehicle fill and empty return trips before negotiating freight rates. A truck running 80% full costs more per case than a cheaper truck running full.</li>
-            <li>Revisit the depot footprint every year. Demand moves faster than warehouse leases do.</li>
-            <li>Don’t assume rail is cheaper. Its rate advantage is eaten up by shunting and handling at both ends: the study finds rail only beats road beyond about 600 km, or around 1,000 km when first and last mile stretch to 100 km each, and heavy trailers already undercut rail’s average rate. For most FMCG lanes, a well-loaded truck wins.</li>
-          </ul>
+          <p>If the national gap is smaller than we thought, the wins won’t come from waiting for new corridors. They’ll come from inside our own networks:</p>
+<ul>
+<li><strong>Measure cost per case by lane,</strong> split into primary and secondary. National averages hide the few lanes that cost the most.</li>
+<li><strong>Fix the dock, not just the road.</strong> If a truck spends a day waiting at each end, a faster highway saves nothing. Track turnaround time at every plant and depot, and set loading slots.</li>
+<li><strong>Fill the truck before negotiating the rate.</strong> A truck running 80% full costs more per case than a dearer truck running full, and planning returns onto the back leg cuts empty kilometres.</li>
+<li><strong>Don’t assume rail is cheaper.</strong> Shunting and handling at both ends eat its rate advantage. For most FMCG lanes, which run under 600 km, a well-loaded truck wins.</li>
+<li><strong>Revisit the depot footprint every year.</strong> Demand moves faster than warehouse leases do.</li>
+</ul>
           <div class="ask"><strong>Your view:</strong> does your company know its logistics cost as a share of sales by lane? If not, what’s the hardest number to get?</div>
-          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://ncaer.org/wp-content/uploads/2025/09/NCAER_Logistic_Study_Report_Sept2025.pdf">NCAER, Assessment of Logistics Cost in India, Sep 2025</a>; <a href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc20251127708001.pdf">PIB, Nov 2025</a>; <a href="https://www.business-standard.com/amp/opinion/columns/confidence-in-india-s-logistics-cost-the-story-of-economic-transition-125112001452_1.html">Business Standard, Nov 2025</a>; <a href="https://www.policyedge.in/p/dpiit-releases-first-official-assessment">The Policy Edge, Sep 2025</a>; <a href="https://www.businesstoday.in/india/story/road-cheaper-than-rail-for-moving-heavy-logistics-dpiit-495095-2025-09-22">Business Today on rail vs road, Sep 2025</a>.</p>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://ncaer.org/wp-content/uploads/2025/09/NCAER_Logistic_Study_Report_Sept2025.pdf">NCAER, Assessment of Logistics Cost in India, Sep 2025</a>; <a href="https://www.business-standard.com/amp/opinion/columns/confidence-in-india-s-logistics-cost-the-story-of-economic-transition-125112001452_1.html">Business Standard, Nov 2025</a>; <a href="https://www.businesstoday.in/india/story/road-cheaper-than-rail-for-moving-heavy-logistics-dpiit-495095-2025-09-22">Business Today on rail vs road, Sep 2025</a>; <a href="https://askfuzz.ai/discover/news/commodities/diesel-hike-forces-20-of-indias-trucks-to-sit-idle">report on truck speeds and idle fleet, 2026</a>; <a href="https://www.nexdigm.com/market-research/insights/blog/road-freight-market-opportunity-analysis/">Nexdigm, road freight utilisation case</a>.</p>
         </div>
       </details>
 
@@ -248,18 +292,28 @@ footer p{color:var(--muted)}
           <span class="toggle">Read</span>
         </summary>
         <div class="cbody">
-          <h4>What the research says</h4>
-          <p>Gartner describes sales and operations execution (S&amp;OE) as a separate process from S&amp;OP that carries out the agreed plan and handles short-term problems. Gartner reports that over half of companies that introduced S&amp;OE saw clear gains in inventory, asset utilization and schedule adherence.</p>
-          <p>Yet few do it well. In a 2021 AIMMS survey, only 10% of respondents were very satisfied with their S&amp;OE, and close to 40% ran it on spreadsheets. Gartner also finds S&amp;OE meetings lose people when they turn into order reviews and status tracking.</p>
+          <h4>What the data says</h4>
+          <div class="nums"><div><b>10%</b><span>of companies very satisfied with their S&amp;OE (AIMMS survey)</span></div><div><b>5–20 pts</b><span>higher service levels at companies with mature planning (McKinsey)</span></div><div><b>10–15%</b><span>lower freight and inventory costs at mature planners (McKinsey)</span></div></div><p>Gartner describes sales and operations execution (S&amp;OE) as a separate, short-horizon process that carries out the agreed S&amp;OP plan and handles near-term problems. The payoff from mature planning is well documented: McKinsey finds mature planners run service levels 5 to 20 percentage points higher with freight and inventory costs 10 to 15% lower, and Bain reports forecasts 20–50% more accurate and inventory 10–30% lower at companies that move beyond basic S&amp;OP.</p>
+<p>Yet few run S&amp;OE well. In an AIMMS survey only 10% of respondents were very satisfied with their S&amp;OE, and close to 40% ran it on spreadsheets. Gartner finds S&amp;OE meetings lose people when they become order reviews and status tracking.</p><div class="chart" role="img" aria-label="The S&amp;OE gap"><p class="ctitle">The S&amp;OE gap</p><div class="bar"><span>Run S&amp;OE on spreadsheets</span><span class="bt"><span class="bf" style="width:40%"></span></span><span class="bv">~40%</span></div><div class="bar"><span>Very satisfied with their S&amp;OE</span><span class="bt"><span class="bf hl" style="width:10%"></span></span><span class="bv">10%</span></div><p class="cnote">AIMMS S&amp;OE survey, 2021.</p></div>
           <h4>My take</h4>
           <p>Most companies already hold this meeting. They just call it the daily or weekly review, and in practice two things go wrong.</p>
-          <p><strong>It turns into firefighting for availability.</strong> The agenda shrinks to which SKUs are short and where. Planners spend most of their time explaining connectivity: where the stock is, what’s in transit and why it isn’t reaching the market. That leaves little time to decide what to change.</p>
-          <p><strong>The planning team becomes the face of it, and accountability fades.</strong> In most organisations, other departments stop attending because planning “owns” the meeting. Planning ends up answering for production misses, sales spikes and transport delays it doesn’t control, and decisions don’t stick because the people who must act on them weren’t in the room.</p>
-          <p>A few changes help:</p>
-          <ul>
-            <li>Fix the horizon at roughly the next 4 to 13 weeks. Anything beyond goes to S&amp;OP; anything inside a week goes to the daily call.</li>
-            <li>Make stock and in-transit visibility self-serve: a shared dashboard everyone reads before the meeting, so no meeting time goes on explaining where stock is.</li>
-            <li>Bring only exceptions: gaps between plan and reality above an agreed threshold, each with an owner and two options.</li>
+<p><strong>It turns into firefighting for availability.</strong> The agenda shrinks to which SKUs are short and where. Planners spend most of their time explaining connectivity: where the stock is, what’s in transit and why it isn’t reaching the market. That leaves little time to decide what to change.</p>
+<p><strong>The planning team becomes the face of it, and accountability fades.</strong> In most organisations, other departments stop attending because planning “owns” the meeting. Planning ends up answering for production misses, sales spikes and transport delays it doesn’t control, and decisions don’t stick because the people who must act on them weren’t in the room.</p>
+<p>What helps:</p>
+<ul>
+<li><strong>Fix the horizon</strong> at roughly the next 4 to 13 weeks. Anything beyond goes to S&amp;OP; anything inside a week goes to the daily call.</li>
+<li><strong>Make visibility self-serve.</strong> A shared stock and in-transit dashboard everyone reads before the meeting, so no meeting time goes on explaining where stock is.</li>
+<li><strong>Bring only exceptions</strong> above an agreed threshold, each with an owner and two options.</li>
+<li><strong>Let each function present its own exceptions:</strong> production for line misses, sales for demand changes, logistics for transit delays. Planning facilitates rather than answering for everyone.</li>
+<li><strong>Measure the meeting itself:</strong> share of time on decisions versus status (aim for status under a third), decisions closed on time, plan adherence week on week, and attendance by function. If those numbers don’t move, the meeting isn’t working.</li>
+</ul>
+          <div class="ask"><strong>Your view:</strong> who should own S&amp;OE in a consumer goods business: planning, operations or sales?</div>
+          <p class="src" style="margin-top:1.25rem">Sources: <a href="https://www.aimms.com/?p=3883">AIMMS S&amp;OE survey, 2021</a>; <a href="https://www.gartner.com/en/documents/6577102">Gartner, best practices for S&amp;OE meetings, 2025</a>; <a href="https://o9solutions.com/articles/what-is-supply-chain-planning">o9, citing McKinsey</a>; <a href="https://www.bain.com/tr/insights/good-sales-and-operations-planning-is-no-longer-good-enough/">Bain, beyond S&amp;OP</a>; <a href="https://riverlogic.com/?p=3114">River Logic, citing Gartner</a>.</p>
+        </div>
+      </details>
+
+    </div>
+    ptions: gaps between plan and reality above an agreed threshold, each with an owner and two options.</li>
             <li>Have each function own and present its own exceptions: production for line misses, sales for demand changes, logistics for transit delays. Planning facilitates rather than answering for everyone.</li>
             <li>Keep a decision log with the owner’s name against each action. If a meeting ends without a written decision, it was a status update.</li>
             <li>Track whether decisions held: did the plan you agreed on Monday survive to Friday?</li>
