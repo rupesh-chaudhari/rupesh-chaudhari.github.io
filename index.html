@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rupesh Chaudhari | Notes on supply chain planning, logistics and optimization</title>
-<meta name="description" content="A weekly capsule and working models on supply chain planning, logistics improvement, digitisation and network optimization, by Rupesh Chaudhari.">
-<meta name="keywords" content="supply chain network design, network optimization, capacity planning, S&amp;OP, IBP, inventory planning, production sequencing, MIP, linear programming, Python, Blue Yonder, Supply Chain Guru">
+<title>Rupesh Chaudhari | Supply chain planning, logistics and optimization</title>
+<meta name="description" content="Rupesh Chaudhari, supply chain planner in Bengaluru. A weekly capsule on planning, logistics and digitisation, field notes, and working optimization and agentic AI models.">
+<meta name="keywords" content="Rupesh Chaudhari, supply chain planning, network optimization, capacity planning, S&amp;OP, S&amp;OE, agentic AI supply planning, inventory planning, production sequencing, MIP, Python">
+<meta property="og:title" content="Rupesh Chaudhari | Supply chain planning, logistics and optimization">
+<meta property="og:description" content="Every stock-out has a backstory. A weekly capsule and working models on how supply chains are planned and moved.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230F6E8C'/%3E%3Ctext x='32' y='41' font-family='Georgia' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3ERC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -136,22 +140,196 @@ footer p{color:var(--muted)}
   dl{grid-template-columns:1fr;gap:.2rem}
   dd{margin-bottom:.8rem}
 }
+
+/* ===== multi-page shell ===== */
+html{scroll-padding-top:5rem}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:1.5rem;height:4.25rem}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);font-weight:600;white-space:nowrap}
+.mono{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--accent);color:var(--bg);font:600 .95rem "Source Serif 4",Georgia,serif;letter-spacing:.02em}
+.nav{display:flex;gap:.25rem;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{padding:.5rem .85rem;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;white-space:nowrap;transition:background .2s,color .2s}
+.nav a:hover{color:var(--ink);background:var(--surface)}
+.nav a[aria-current="page"]{color:var(--accent);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.page{display:none;animation:rise .45s ease both}
+.page.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.page{animation:none}}
+.page>section:first-child{border-top:0}
+.phead{padding:4rem 0 2rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--flow);margin:0 0 1rem}
+.eyebrow .ico{width:1rem;height:1rem}
+.phead h1{font-size:clamp(2rem,4.2vw,3rem);max-width:46rem}
+.phead p{color:var(--muted);font-size:1.12rem;max-width:42rem;margin:1rem 0 0}
+.phead .eyebrow{color:var(--flow);font-size:.8rem;margin:0 0 1rem}
+
+/* home */
+.home-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding:4.5rem 0 3rem}
+.home-hero h1{font-size:clamp(2.2rem,5vw,3.7rem);letter-spacing:-.015em}
+.hello{display:flex;align-items:center;gap:.9rem;margin:0 0 1.4rem}
+.hello .mono{width:3.2rem;height:3.2rem;font-size:1.2rem;box-shadow:0 0 0 4px var(--bg),0 0 0 5px var(--line)}
+.hello b{display:block;font-size:1.05rem}
+.hello span:not(.mono){color:var(--muted);font-size:.92rem;display:inline-flex;align-items:center;gap:.3rem}
+.hello span .ico{width:.95rem;height:.95rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.3rem .8rem;margin-top:1.6rem}
+.dot{width:.5rem;height:.5rem;border-radius:50%;background:#2E9E6A;box-shadow:0 0 0 0 rgba(46,158,106,.5);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(46,158,106,0)}100%{box-shadow:0 0 0 0 rgba(46,158,106,0)}}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;background:var(--surface);margin-bottom:1rem}
+.facts div{padding:1.2rem 1.3rem;border-left:1px solid var(--line)}
+.facts div:first-child{border-left:0}
+.facts b{display:block;font:600 1.6rem/1.1 "Source Serif 4",Georgia,serif;color:var(--accent)}
+.facts span{display:block;color:var(--muted);font-size:.88rem;margin-top:.35rem;line-height:1.4}
+.journey{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative}
+.journey::before{content:"";position:absolute;left:0;right:0;top:.55rem;height:2px;background:repeating-linear-gradient(90deg,var(--flow) 0 8px,transparent 8px 14px);opacity:.6}
+.journey li{position:relative;padding-top:1.9rem}
+.journey li::before{content:"";position:absolute;top:0;left:0;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--surface);border:3px solid var(--accent)}
+.journey li.now::before{background:var(--flow);border-color:var(--flow)}
+.journey small{color:var(--flow);font-weight:600;letter-spacing:.04em}
+.journey strong{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:1.15rem;margin:.2rem 0 .3rem}
+.journey p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.5}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.tile{display:flex;flex-direction:column;gap:.5rem;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1.5rem;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.tile::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--flow));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.tile:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 28px -18px rgba(15,110,140,.55)}
+.tile:hover::after{transform:scaleX(1)}
+.tile:focus-visible{outline:3px solid var(--flow);outline-offset:3px}
+.tile .icobox{margin:0}
+.tile h3{font-size:1.3rem}
+.tile p{margin:0;color:var(--muted)}
+.tile .go{margin-top:auto;padding-top:.6rem;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:.35rem}
+.tile .go .ico{width:1rem;height:1rem;transition:transform .25s}
+.tile:hover .go .ico{transform:translateX(4px)}
+.tile .count{position:absolute;top:1.2rem;right:1.3rem;font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.15rem .6rem}
+.latest{display:grid;grid-template-columns:auto 1fr auto;gap:1.25rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--flow);border-radius:6px;padding:1.3rem 1.5rem;text-decoration:none;color:var(--ink)}
+.latest .issue{font-size:2.2rem}
+.latest small{color:var(--muted)}
+.latest h3{font-size:1.25rem;margin-top:.2rem}
+.latest .go{color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:.35rem}
+.latest .go .ico{width:1rem;height:1rem}
+.cols2{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem}
+
+/* models lab */
+.feature{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.feature::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent),var(--flow))}
+.feature .tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);background:var(--flow);border-radius:3px;padding:.2rem .55rem;margin-bottom:1rem}
+.feature h3{font-size:1.6rem;margin-bottom:.6rem}
+.feature>p{color:var(--muted);max-width:46rem;margin:0 0 1.5rem}
+.flow{list-style:none;padding:0;margin:0 0 1.75rem;display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;counter-reset:st}
+.flow li{counter-increment:st;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.9rem;font-size:.9rem;position:relative}
+.flow li::before{content:counter(st);display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:600;font-size:.8rem;margin-bottom:.5rem}
+.flow li.human::before{background:var(--flow)}
+.flow b{display:block;margin-bottom:.2rem}
+.flow span{color:var(--muted);line-height:1.45;display:block}
+.flow li:not(:last-child)::after{content:"";position:absolute;right:-.55rem;top:1.45rem;width:.5rem;height:2px;background:var(--flow)}
+.gains{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem 2rem;padding:0;margin:0 0 1.75rem;list-style:none}
+.gains li{display:block;position:relative;padding-left:1.2rem}
+.gains li::before{content:"";position:absolute;left:0;top:.55rem;width:.55rem;height:.55rem;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+.feature h4{font:600 1rem "IBM Plex Sans",sans-serif;margin:0 0 .75rem}
+.demos{grid-template-columns:repeat(3,1fr)}
+.demo{display:flex;flex-direction:column}
+.demo .links{margin-top:auto}
+.demo a .ico,.btn .ico.sm{width:1rem;height:1rem;vertical-align:-2px}
+.note{font-size:.9rem;color:var(--muted);margin-top:1.5rem}
+
+.feature .motto{font:600 1.15rem/1.4 "Source Serif 4",Georgia,serif;color:var(--accent);margin:0 0 .8rem}
+.lab-nums{margin:0 0 1.75rem;max-width:52rem}
+.lab-nums div{background:var(--bg)}
+.agents{margin:0 0 1.75rem}
+.agents span{border-style:solid;background:var(--bg);color:var(--ink)}
+.gains strong{color:var(--ink)}
+.video{margin:0 0 1.5rem}
+.video video{width:100%;display:block;border-radius:6px;border:1px solid var(--line);background:#000;aspect-ratio:16/9}
+.video figcaption{font-size:.85rem;color:var(--muted);margin-top:.5rem}
+.portrait{position:relative;display:grid;justify-items:center;gap:.5rem}
+.photo{margin:0;width:20rem;height:20rem;padding:7px;border-radius:50%;position:relative;padding:6px;background:conic-gradient(from 200deg,var(--accent),var(--flow),var(--accent));box-shadow:0 18px 40px -22px rgba(15,110,140,.6);z-index:1}
+.photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid var(--bg)}
+.photo .mono.big{display:none}
+.photo.nophoto .mono.big{display:grid;width:100%;height:100%;font-size:5rem;border:4px solid var(--bg)}
+.portrait .net{margin-top:-4.5rem;opacity:.9;max-width:24rem}
+.hello .mono.av{display:none}
+.mono.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.photo{width:15rem;height:15rem}.portrait{order:-1}.portrait .net{display:none}.hello .mono.av{display:none}}
+.quick{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:1.1rem;font-size:.88rem}
+.quick>span{color:var(--muted);margin-right:.2rem}
+.quick a{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .2s,color .2s}
+.quick a:hover{border-color:var(--accent);color:var(--accent)}
+.quick a:first-of-type{border-color:var(--flow)}
+.quick .ico{width:.85rem;height:.85rem;opacity:.7}
+/* contact */
+.contact-card{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2.25rem}
+.contact-card h2{font-size:1.7rem}
+.contact-card p{color:var(--muted);margin:.6rem 0 0}
+.topics{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.topics span{font-size:.9rem;border:1px dashed var(--line);border-radius:999px;padding:.3rem .8rem;color:var(--muted)}
+
+.sitefoot{border-top:1px solid var(--line);padding:2rem 0 3rem;margin-top:3rem;color:var(--muted);font-size:.9rem}
+.sitefoot .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+.sitefoot a{color:var(--muted)}
+
+@media (max-width:860px){
+  .topbar .wrap{gap:.75rem}
+  .topbar .wrap{flex-wrap:wrap;height:auto;padding-top:.6rem;padding-bottom:.4rem;gap:.4rem}
+  .nav{width:100%;margin-left:0;justify-content:space-between;gap:0}
+  .nav a{padding:.4rem .3rem;font-size:.82rem}
+  .topbar .mono{width:2rem;height:2rem;font-size:.8rem}
+  .home-hero,.cols2,.contact-card{grid-template-columns:1fr}
+  .home-hero{padding:2.75rem 0 2rem;gap:2rem}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(3){border-left:0}
+  .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .journey{grid-template-columns:1fr;gap:1.4rem;padding-left:1.8rem}
+  .journey::before{left:.5rem;right:auto;top:0;bottom:0;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--flow) 0 8px,transparent 8px 14px)}
+  .journey li{padding-top:0}
+  .journey li::before{left:-1.8rem;top:.2rem}
+  .tiles,.demos,.gains{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .flow li:not(:last-child)::after{right:auto;left:1.7rem;top:auto;bottom:-.55rem;width:2px;height:.5rem}
+  .latest{grid-template-columns:auto 1fr}
+  .latest .go{grid-column:2}
+  .feature{padding:1.5rem}
+  .phead{padding:2.75rem 0 1.5rem}
+}
 </style>
+<noscript><style>.page{display:block}</style></noscript>
 </head>
 <body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#/about"><span class="mono">RC</span><span class="full">Rupesh Chaudhari</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/about">About</a>
+      <a href="#/capsule">Capsule</a>
+      <a href="#/field">Field notes</a>
+      <a href="#/models">Models lab</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main class="wrap">
 
-  <header class="hero">
+<!-- ===================== ABOUT ===================== -->
+<div class="page active" id="about" data-title="About">
+  <header class="home-hero">
     <div>
-      <p class="name">Rupesh Chaudhari</p>
+      <div class="hello"><span class="mono av"><img src="profile.jpg" alt="" onerror="this.remove()">RC</span><div><b>Hi, I’m Rupesh Chaudhari</b><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Supply chain professional</span></div></div>
       <h1>Every stock-out has a backstory. I go looking for it.</h1>
-      <p class="lede">I work in supply chain planning and spend a lot of my spare time on the questions behind it: why plans break, where logistics cost really sits, and what optimization and AI can genuinely fix. This is where I write those ideas down and share the models I build to test them.</p>
+      <p class="lede">For close to a decade I’ve planned how beverages get made and moved across India, from regional supply plans to national network, capacity and co-pack decisions. Outside the day job I build optimization and AI models to test ideas, and write a weekly capsule on what I learn.</p>
       <div class="btns">
-        <a class="btn primary" href="#capsule"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg>Read the capsule</a>
-        <a class="btn ghost" href="#demos"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>Try the models</a>
+        <a class="btn primary" href="#/capsule"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg>Read the capsule</a>
+        <a class="btn ghost" href="#/models"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>Explore the models lab</a>
       </div>
+      <div class="quick"><span>Try a model:</span><a href="https://supply-planning-agentic-ai.streamlit.app" target="_blank" rel="noopener">Agentic AI supply planning<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener">Network optimization<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener">Production sequencing<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener">Spares inventory<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
+      <span class="badge"><span class="dot"></span>New: agentic AI supply planning, monthly to daily, in the models lab</span>
     </div>
-    <svg class="net" viewBox="0 0 400 300" role="img" aria-label="Illustration of a supply network: plants feeding distribution centres that serve demand zones">
+    <div class="portrait">
+      <figure class="photo">
+        <img src="profile.jpg" alt="Rupesh Chaudhari" width="220" height="220" onerror="this.parentNode.classList.add('nophoto');this.remove()">
+        <span class="mono big" aria-hidden="true">RC</span>
+      </figure>
+      <svg class="net" viewBox="0 0 400 300" role="img" aria-label="Illustration of a supply network: plants feeding distribution centres that serve demand zones">
       <path class="edge" d="M50 70 L190 60 M50 70 L190 150 M50 160 L190 150 M50 160 L190 240 M50 245 L190 240 M50 245 L190 150"/>
       <path class="edge" d="M190 60 L340 40 M190 60 L340 95 M190 150 L340 95 M190 150 L340 150 M190 150 L340 205 M190 240 L340 205 M190 240 L340 260"/>
       <path class="flow" d="M50 70 L190 150 L340 150"/>
@@ -170,18 +348,66 @@ footer p{color:var(--muted)}
       <text x="160" y="292">Distribution</text>
       <text x="318" y="292">Demand</text>
     </svg>
+    </div>
   </header>
 
-  <div class="stats" aria-label="What I write about">
-    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><span><b>Planning</b>process and rhythm</span></div>
-    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>Logistics</b>cost and network flow</span></div>
-    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="10" height="10" rx="1"/><rect x="11" y="3" width="10" height="10" rx="1" stroke-dasharray="2 2"/></svg><span><b>Digitisation</b>twins, data and AI</span></div>
-    <div class="stat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg><span><b>Optimization</b>models I build and share</span></div>
+  <div class="facts" aria-label="At a glance">
+    <div><b>~10 yrs</b><span>planning supply chains in FMCG and beverages</span></div>
+    <div><b>400M</b><span>cases a year across the largest network I’ve planned</span></div>
+    <div><b>4</b><span>working models: optimization and agentic AI</span></div>
+    <div><b>Weekly</b><span>capsule on planning, logistics and digitisation</span></div>
   </div>
 
-  <section id="capsule">
-    <h2>The Planning Capsule</h2>
-    <p class="intro">A short weekly note on planning process, logistics and supply chain digitisation. Each one pairs published research with what I’ve seen work on the ground, and ends with a question I’d like your view on.</p>
+  <section>
+    <p class="eyebrow">The journey</p>
+    <h2 style="margin-bottom:2rem">From engineering to planning the network</h2>
+    <ol class="journey">
+      <li><small>IIT Bombay</small><strong>Engineer first</strong><p>B.Tech + M.Tech dual degree. Where the habit of modelling problems started.</p></li>
+      <li><small>Oracle · 2015–17</small><strong>Systems and data</strong><p>Learned how enterprise software and data actually run a business. Then an MBA in Operations &amp; Strategy at FMS Delhi.</p></li>
+      <li><small>National beverage bottler · 2019–26</small><strong>Planning at scale</strong><p>From zonal supply planning to national network, capacity and co-pack planning, and the planning centre of excellence.</p></li>
+      <li class="now"><small>Beverage brand · 2026–</small><strong>Planning and logistics</strong><p>Heading supply chain planning and logistics for a fast-growing beverage brand.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="eyebrow">Explore</p>
+    <h2 style="margin-bottom:1.75rem">What you’ll find here</h2>
+    <div class="tiles">
+      <a class="tile" href="#/capsule"><span class="count">5 issues</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg></span><h3>The Planning Capsule</h3><p>A weekly note pairing published research with what works on the ground. Each one ends with a question for you.</p><span class="go">Read the capsules <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="tile" href="#/field"><span class="count">3 stories</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-14 4 9 3-5 4 10"/><path d="M3 20h18"/></svg></span><h3>Field notes</h3><p>Problems I’ve worked on, with the approach, the outcome and the lesson I took away. Companies kept anonymous.</p><span class="go">Read the notes <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="tile" href="#/models"><span class="count">4 models</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><h3>Models lab</h3><p>Working models on synthetic data: network design, production sequencing, spares and agentic AI supply planning.</p><span class="go">Try the models <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="tile" href="#/contact"><span class="count">Open door</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><h3>Let’s talk</h3><p>Disagree with a capsule, have a topic idea, or want to compare notes on a planning problem? I’d like to hear it.</p><span class="go">Get in touch <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </section>
+
+  <section class="cols2">
+    <div>
+      <p class="eyebrow">Why this site</p>
+      <h2 style="margin-bottom:1rem">A notebook, not a brochure</h2>
+      <p>The most useful ideas in supply chain rarely come from a single tool or textbook. They come from asking why something keeps going wrong, then testing a fix.</p>
+      <p>Each week I pick one question about planning, logistics or digitisation, read what the research says and add what I’ve seen in practice. The models are side projects I build to understand a problem properly.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Latest capsule</p>
+      <a class="latest" href="#/capsule"><span class="issue">#5</span><span><small>Reverse logistics, across industries</small><h3>The return trip: the supply chain nobody plans</h3></span><span class="go">Read <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <h3 style="font-size:1.2rem;margin:2rem 0 1rem">What I build with</h3>
+      <ul class="tools">
+          <li>Python (MIP/LP)</li><li>Stochastic optimization</li><li>Statistical modelling</li>
+          <li>Supply Chain Guru</li><li>Blue Yonder</li><li>Dynamics 365</li>
+          <li>S&amp;OP / IBP</li><li>Network design</li><li>Inventory planning</li>
+        </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CAPSULE ===================== -->
+<div class="page" id="capsule" data-title="The Planning Capsule">
+  <header class="phead">
+    <p class="eyebrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg>Weekly</p>
+    <h1>The Planning Capsule</h1>
+    <p>A short weekly note on planning process, logistics and supply chain digitisation. Each one pairs published research with what I’ve seen work on the ground, and ends with a question I’d like your view on.</p>
+  </header>
+  <section style="padding-top:0;border-top:0">
     <div class="capsules">
 
       <details class="capsule" open>
@@ -315,11 +541,16 @@ footer p{color:var(--muted)}
     </div>
     <p style="margin-top:1.5rem">New capsule every week. Disagree with one? <a href="https://www.linkedin.com/in/rupesh-chaudhari">Tell me on LinkedIn</a>.</p>
   </section>
+</div>
 
-  <section id="work">
-    <h2>From the field</h2>
-    <p class="intro">Problems I’ve worked on that shaped how I think about planning. Companies are kept anonymous; the lessons are the point.</p>
-
+<!-- ===================== FIELD NOTES ===================== -->
+<div class="page" id="field" data-title="Field notes">
+  <header class="phead">
+    <p class="eyebrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-14 4 9 3-5 4 10"/><path d="M3 20h18"/></svg>From the field</p>
+    <h1>Problems that shaped how I think about planning</h1>
+    <p>Companies are kept anonymous and figures stay at headline level. The lessons are the point.</p>
+  </header>
+  <section id="work" style="padding-top:1rem">
     <article class="case">
       <div>
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span>
@@ -333,8 +564,7 @@ footer p{color:var(--muted)}
       
         <dt>Lesson</dt><dd>A network model earns trust when finance and operations help build the scenarios, not when the answer is mathematically optimal.</dd></dl>
     </article>
-
-    <article class="case">
+<article class="case">
       <div>
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 4.5 9-4.5" opacity=".55"/></svg></span>
         <h3>Planning system rollout and centre of excellence</h3>
@@ -347,8 +577,7 @@ footer p{color:var(--muted)}
       
         <dt>Lesson</dt><dd>Software goes live in months; planning habits take a year. Redesign the process first, then the screens.</dd></dl>
     </article>
-
-    <article class="case">
+<article class="case">
       <div>
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span>
         <h3>Regional supply planning</h3>
@@ -362,55 +591,135 @@ footer p{color:var(--muted)}
         <dt>Lesson</dt><dd>Most of the freight saving came from load and lane design, not from negotiating rates.</dd></dl>
     </article>
   </section>
+</div>
 
-  <section id="demos">
-    <h2>Model demos</h2>
-    <p class="intro">Working models on synthetic data. Change the inputs and see how the plan changes.</p>
+<!-- ===================== MODELS LAB ===================== -->
+<div class="page" id="models" data-title="Models lab">
+  <header class="phead">
+    <p class="eyebrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>Models lab</p>
+    <h1>Working models you can try</h1>
+    <p>Each one runs on synthetic data, so nothing here comes from a real company. Change the inputs and watch how the plan changes.</p>
+  </header>
+
+  <section id="demos" style="padding-top:1rem">
+    <article class="feature">
+      <span class="tag">New</span>
+      <h3>Agentic AI supply planning: monthly → weekly → daily</h3>
+      <p class="motto">Code does the maths. Agents decide and explain. Planners approve.</p>
+      <p>Most companies plan the month, the week and the day in separate spreadsheets that drift apart. This system connects three planning engines through one set of inputs and puts nine AI agents on top of them, so the network plan, the production sequence and today’s trucks stay one plan.</p>
+
+      <div class="nums lab-nums">
+        <div><b>3</b><span>linked engines: network, sequencing, daily dispatch</span></div>
+        <div><b>9</b><span>agents that check, explain and run what-ifs</span></div>
+        <div><b>~10 min</b><span>full cycle at 20 plants × 30 depots × 200 SKUs</span></div>
+      </div>
+
+      <h4>How it works</h4>
+      <ol class="flow">
+        <li><b>Check the inputs</b><span>Flags missing, stale or partial data and blocks a run on bad master data.</span></li>
+        <li><b>Monthly network</b><span>Optimizer sets production by plant and line, depot sourcing and pre-build for 6 months.</span></li>
+        <li><b>Weekly sequence</b><span>Turns targets into campaigns and changeover order per line per day; re-sequences when production misses.</span></li>
+        <li><b>Daily dispatch</b><span>Reads stock health and plans trucks in whole pallets, within storage limits, on network-plan lanes.</span></li>
+        <li class="human"><b>Planner approves</b><span>A morning brief puts decisions first; approved trucks go out as TMS and ERP files.</span></li>
+      </ol>
+
+      <h4>The agents</h4>
+      <div class="topics agents"><span>Master data</span><span>Network</span><span>Sequencing</span><span>Inventory health</span><span>Dispatch</span><span>Supply</span><span>Deviation</span><span>Alignment</span><span>Morning brief</span></div>
+
+      <h4>How it helps the business</h4>
+      <ul class="gains">
+        <li><strong>One plan from S&amp;OP to the truck.</strong> An alignment check flags when the week drifts from the month or dispatch leaves planned lanes.</li>
+        <li><strong>Planners start with decisions, not data.</strong> The morning brief lists what needs approval and why, before anything else.</li>
+        <li><strong>Bad data stops at the door.</strong> Every input is health-checked and every flag traced back to the file and numbers behind it.</li>
+        <li><strong>Reacts when the plant misses.</strong> Yesterday’s production is reconciled each morning; the week is re-planned with the next two days kept firm.</li>
+        <li><strong>Keeps the annual plan in view.</strong> Volume is tracked against the business plan by brand and pack, with a cause and owner for every line at risk.</li>
+        <li><strong>Earns its autonomy.</strong> It runs in shadow, then copilot. A lane moves to auto-approval only after 20 days with planner overrides under 10%.</li>
+      </ul>
+
+      <figure class="video">
+        <video controls preload="metadata" playsinline poster="agentic-demo-poster.jpg">
+          <source src="agentic-demo.mp4" type="video/mp4">
+        </video>
+        <figcaption>Four-minute walkthrough: inputs, monthly network, weekly sequence, stock health, dispatch approvals.</figcaption>
+      </figure>
+
+      <a class="btn primary" href="https://supply-planning-agentic-ai.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg>Open the live demo</a>
+    </article>
+
     <div class="demos">
       <div class="demo">
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span>
         <h3>Network optimization</h3>
         <p>A fictional multi-plant network. Pick which plants supply which markets, and whether to open new capacity, at the lowest total cost.</p>
-        <div class="links"><a href="https://sc-network-optimiser.streamlit.app">Open demo</a></div>
+        <div class="links"><a href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="demo">
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h6"/><path d="M17 4l3 2-3 2M20 16l-3 2 3 2"/></svg></span>
         <h3>Production planning and sequencing</h3>
         <p>Plans what each line makes and in what order, trading off changeover time against service level.</p>
-        <div class="links"><a href="https://optimum-pro-sequence.streamlit.app">Open demo</a></div>
+        <div class="links"><a href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
       </div>
       <div class="demo">
         <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg></span>
         <h3>Spares inventory optimization</h3>
         <p>Sets stock levels for service spares with uncertain demand, balancing availability against inventory cost.</p>
-        <div class="links"><a href="https://semicon-spares-optimizer.streamlit.app">Open demo</a></div>
+        <div class="links"><a href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
+      </div>
+    </div>
+    <p class="note">Demos are hosted on Streamlit and may take a few seconds to wake up the first time you open them.</p>
+  </section>
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<div class="page" id="contact" data-title="Contact">
+  <header class="phead">
+    <p class="eyebrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</p>
+    <h1>Let’s talk supply chain</h1>
+    <p>Comments, counter-arguments and topic ideas for the next capsule are always welcome.</p>
+  </header>
+  <section style="padding-top:1rem;border-top:0">
+    <div class="contact-card">
+      <div>
+        <h2>Got a planning problem worth arguing about?</h2>
+        <p>Write to me or message me on LinkedIn. I read everything and reply to most.</p>
+        <div class="topics"><span>S&amp;OP and S&amp;OE</span><span>Network design</span><span>Logistics cost</span><span>Agentic AI in planning</span><span>Reverse logistics</span><span>Inventory policy</span></div>
+      </div>
+      <div class="btns" style="flex-direction:column">
+        <a class="btn primary" href="mailto:rupeshchaudhari76@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Write to me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/rupesh-chaudhari" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
       </div>
     </div>
   </section>
-
-  <section id="about">
-    <div class="narrow">
-      <h2>Why I write this</h2>
-      <p>I’ve spent close to a decade planning supply chains for beverage companies, from regional supply plans to national network and capacity decisions. Along the way I noticed that the most useful ideas rarely come from a single tool or textbook. They come from asking why something keeps going wrong, then testing a fix.</p>
-      <p>This site is my notebook for that. Each week I pick one question about planning, logistics or digitisation, read what the research says, and add what I’ve seen in practice. The models here are side projects I build to understand a problem properly. If something resonates, or you think I’ve got it wrong, I’d genuinely like to hear it.</p>
-      <h3 style="font-size:1.2rem;margin:2rem 0 1rem">What I build with</h3>
-      <ul class="tools">
-          <li>Python (MIP/LP)</li><li>Stochastic optimization</li><li>Statistical modelling</li>
-          <li>Supply Chain Guru</li><li>Blue Yonder</li><li>Dynamics 365</li>
-          <li>S&amp;OP / IBP</li><li>Network design</li><li>Inventory planning</li>
-        </ul>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <h2>Let’s talk supply chain</h2>
-    <p>Comments, counter-arguments and topic ideas for the next capsule are always welcome.</p>
-    <div class="btns">
-      <a class="btn primary" href="mailto:rupeshchaudhari76@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Write to me</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/rupesh-chaudhari"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
-    </div>
-  </footer>
+</div>
 
 </main>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    <span>© 2026 Rupesh Chaudhari · Views are my own.</span>
+    <span><a href="#/capsule">Capsule</a> · <a href="#/models">Models lab</a> · <a href="https://www.linkedin.com/in/rupesh-chaudhari" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
+  var base='Rupesh Chaudhari';
+  function show(){
+    var id=(location.hash.replace(/^#\/?/,'')||'about').split('/')[0];
+    if(!document.getElementById(id)||!document.getElementById(id).classList.contains('page'))id='about';
+    pages.forEach(function(p){p.classList.toggle('active',p.id===id)});
+    links.forEach(function(a){
+      if(a.getAttribute('href')==='#/'+id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+    });
+    var pg=document.getElementById(id);
+    document.title=(id==='about'?base+' | Supply chain planning, logistics and optimization':pg.dataset.title+' | '+base);
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);
+  show();
+})();
+</script>
 </body>
 </html>
