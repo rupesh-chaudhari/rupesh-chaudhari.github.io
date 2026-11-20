@@ -265,6 +265,26 @@ html{scroll-padding-top:5rem}
 .mnav a{font-size:.88rem;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
 .mnav a:hover{border-color:var(--accent);color:var(--accent)}
 @media (max-width:860px){.flow.n4{grid-template-columns:1fr}}
+.dots-sec h2{margin-bottom:.6rem}
+.dots-intro{color:var(--muted);max-width:44rem;margin:0 0 1.5rem}
+.dots-art{display:block;width:100%;height:auto;margin:0 0 1.5rem}
+.dots-art .dpath{fill:none;stroke:var(--line);stroke-width:3}
+.dots-art .dpath.live{stroke:var(--flow);stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.dots-art .dnode circle{fill:var(--surface);stroke:var(--accent);stroke-width:3}
+.dots-art .dnode.now circle{fill:var(--flow);stroke:var(--flow)}
+.dots-art .dnode text{font:600 13px "IBM Plex Sans",sans-serif;fill:var(--accent);text-anchor:middle}
+.dots-art .dnode.now text{fill:var(--bg)}
+.journey{grid-template-columns:repeat(5,1fr) !important}
+.journey::before{display:none}
+.journey li{padding-top:0 !important;counter-increment:jn}
+.journey{counter-reset:jn}
+.journey li::before{content:counter(jn) !important;position:static !important;display:grid !important;place-items:center;width:1.7rem !important;height:1.7rem !important;border-width:2px !important;font:600 .8rem "IBM Plex Sans",sans-serif;color:var(--accent);margin-bottom:.6rem}
+.journey li.now::before{color:var(--bg)}
+.dot-take{display:inline-block;line-height:1.35;margin-top:.7rem;font-size:.8rem;font-weight:600;color:var(--accent);border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:.25rem .6rem}
+.dots-close{margin:2rem 0 0;padding:1rem 1.25rem;border-left:4px solid var(--flow);background:var(--surface);border-radius:4px;max-width:50rem}
+@media (prefers-reduced-motion: reduce){.dots-art .dpath.live{animation:none;stroke-dashoffset:0}}
+@media (max-width:860px){.dots-art{display:none}.journey{grid-template-columns:1fr !important;padding-left:0 !important}.journey li::before{margin-bottom:.4rem}.journey li{position:relative;padding-left:2.6rem !important}.journey li::before{position:absolute !important;left:0;top:0}.journey li:not(:last-child)::after{content:"";position:absolute;left:.8rem;top:1.9rem;bottom:-1.3rem;border-left:2px dashed var(--flow);opacity:.7}}
 /* contact */
 .contact-card{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2.25rem}
 .contact-card h2{font-size:1.7rem}
@@ -367,15 +387,30 @@ html{scroll-padding-top:5rem}
     <div><b>Weekly</b><span>capsule on planning, logistics and digitisation</span></div>
   </div>
 
-  <section>
+  <section class="dots-sec">
     <p class="eyebrow">The journey</p>
-    <h2 style="margin-bottom:2rem">From engineering to planning the network</h2>
+    <h2>Connecting the dots</h2>
+    <p class="dots-intro">You can only connect the dots looking back. Each stop added one skill that the next one needed, and together they make the way I work today.</p>
+
+    <svg class="dots-art" viewBox="0 0 1000 170" role="img" aria-label="Five career milestones joined by a single rising path">
+      <path class="dpath" d="M60 130 C 180 130, 200 70, 280 80 S 420 140, 500 100 S 640 40, 720 60 S 860 30, 940 30"/>
+      <path class="dpath live" d="M60 130 C 180 130, 200 70, 280 80 S 420 140, 500 100 S 640 40, 720 60 S 860 30, 940 30"/>
+      <g class="dnode"><circle cx="60" cy="130" r="13"/><text x="60" y="135">1</text></g>
+      <g class="dnode"><circle cx="280" cy="80" r="13"/><text x="280" y="85">2</text></g>
+      <g class="dnode"><circle cx="500" cy="100" r="13"/><text x="500" y="105">3</text></g>
+      <g class="dnode"><circle cx="720" cy="60" r="13"/><text x="720" y="65">4</text></g>
+      <g class="dnode now"><circle cx="940" cy="30" r="16"/><text x="940" y="35">5</text></g>
+    </svg>
+
     <ol class="journey">
-      <li><small>IIT Bombay</small><strong>Engineer first</strong><p>B.Tech + M.Tech dual degree. Where the habit of modelling problems started.</p></li>
-      <li><small>Oracle · 2015–17</small><strong>Systems and data</strong><p>Learned how enterprise software and data actually run a business. Then an MBA in Operations &amp; Strategy at FMS Delhi.</p></li>
-      <li><small>National beverage bottler · 2019–26</small><strong>Planning at scale</strong><p>From zonal supply planning to national network, capacity and co-pack planning, and the planning centre of excellence.</p></li>
-      <li class="now"><small>Beverage brand · 2026–</small><strong>Planning and logistics</strong><p>Heading supply chain planning and logistics for a fast-growing beverage brand.</p></li>
+      <li><small>IIT Bombay</small><strong>Engineer first</strong><p>B.Tech + M.Tech dual degree. Where the habit of turning a messy problem into a model started.</p><span class="dot-take">● think in models</span></li>
+      <li><small>Oracle · 2015–17</small><strong>Systems and data</strong><p>Saw how enterprise software and data actually run a business, and where they break.</p><span class="dot-take">● understand the system</span></li>
+      <li><small>FMS Delhi · 2017–19</small><strong>MBA, Operations &amp; Strategy</strong><p>Learned to link operations to cost, growth and strategy, and to make the case to a business.</p><span class="dot-take">● speak the business</span></li>
+      <li><small>National beverage bottler · 2019–26</small><strong>Planning at scale</strong><p>From zonal supply planning to national network, capacity and co-pack planning, and the planning centre of excellence.</p><span class="dot-take">● run it at scale</span></li>
+      <li class="now"><small>Beverage brand · 2026–</small><strong>Planning and logistics</strong><p>Heading supply chain planning and logistics end to end, and building the models to run it better.</p><span class="dot-take">● own it end to end</span></li>
     </ol>
+
+    <p class="dots-close"><b>Joined up:</b> model the problem, understand the system, make the business case, run it at scale, own the outcome. That chain is what the capsules and the models lab are about.</p>
   </section>
 
   <section>
