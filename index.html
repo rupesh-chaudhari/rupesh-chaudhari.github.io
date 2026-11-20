@@ -257,6 +257,14 @@ html{scroll-padding-top:5rem}
 .quick a:hover{border-color:var(--accent);color:var(--accent)}
 .quick a:first-of-type{border-color:var(--flow)}
 .quick .ico{width:.85rem;height:.85rem;opacity:.7}
+.fhead{display:flex;align-items:center;gap:.9rem;margin-bottom:.6rem}
+.fhead .icobox{margin:0;flex:none;color:var(--flow)}
+.fhead h3{margin:0 !important}
+.flow.n4{grid-template-columns:repeat(4,1fr)}
+.mnav{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 2rem}
+.mnav a{font-size:.88rem;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
+.mnav a:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:860px){.flow.n4{grid-template-columns:1fr}}
 /* contact */
 .contact-card{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2.25rem}
 .contact-card h2{font-size:1.7rem}
@@ -322,7 +330,7 @@ html{scroll-padding-top:5rem}
         <a class="btn primary" href="#/capsule"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg>Read the capsule</a>
         <a class="btn ghost" href="#/models"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>Explore the models lab</a>
       </div>
-      <div class="quick"><span>Try a model:</span><a href="https://supply-planning-agentic-ai.streamlit.app" target="_blank" rel="noopener">Agentic AI supply planning<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener">Network optimization<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener">Production sequencing<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener">Spares inventory<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://optimum-vehicleload.streamlit.app" target="_blank" rel="noopener">Truck load planner<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
+      <div class="quick"><span>Try a model:</span><a href="https://supply-planning-agentic-ai.streamlit.app" target="_blank" rel="noopener">Agentic AI supply planning<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener">Network optimization<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener">Production sequencing<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener">Spares inventory<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://optimum-vehicleload.streamlit.app" target="_blank" rel="noopener">Truck load planner<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://rupesh-chaudhari.github.io/control-tower/" target="_blank" rel="noopener">Control tower<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
       <span class="badge"><span class="dot"></span>New: agentic AI supply planning, monthly to daily, in the models lab</span>
     </div>
     <div class="portrait">
@@ -355,7 +363,7 @@ html{scroll-padding-top:5rem}
   <div class="facts" aria-label="At a glance">
     <div><b>~10 yrs</b><span>planning supply chains in FMCG and beverages</span></div>
     <div><b>400M</b><span>cases a year across the largest network I’ve planned</span></div>
-    <div><b>5</b><span>working models: optimization and agentic AI</span></div>
+    <div><b>6</b><span>working models: optimization, AI and a control tower</span></div>
     <div><b>Weekly</b><span>capsule on planning, logistics and digitisation</span></div>
   </div>
 
@@ -376,7 +384,7 @@ html{scroll-padding-top:5rem}
     <div class="tiles">
       <a class="tile" href="#/capsule"><span class="count">5 issues</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/><path d="M10 9h4"/></svg></span><h3>The Planning Capsule</h3><p>A weekly note pairing published research with what works on the ground. Each one ends with a question for you.</p><span class="go">Read the capsules <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="tile" href="#/field"><span class="count">3 stories</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l5-14 4 9 3-5 4 10"/><path d="M3 20h18"/></svg></span><h3>Field notes</h3><p>Problems I’ve worked on, with the approach, the outcome and the lesson I took away. Companies kept anonymous.</p><span class="go">Read the notes <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="tile" href="#/models"><span class="count">5 models</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><h3>Models lab</h3><p>Working models on synthetic data: network design, production sequencing, truck loading, spares and agentic AI supply planning.</p><span class="go">Try the models <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="tile" href="#/models"><span class="count">6 models</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span><h3>Models lab</h3><p>Working models on synthetic data: network design, truck loading, sequencing, spares, a live control tower and agentic AI supply planning.</p><span class="go">Try the models <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       <a class="tile" href="#/contact"><span class="count">Open door</span><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><h3>Let’s talk</h3><p>Disagree with a capsule, have a topic idea, or want to compare notes on a planning problem? I’d like to hear it.</p><span class="go">Get in touch <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </section>
@@ -603,9 +611,10 @@ html{scroll-padding-top:5rem}
   </header>
 
   <section id="demos" style="padding-top:1rem">
-    <article class="feature">
-      <span class="tag">New</span>
-      <h3>Agentic AI supply planning: monthly → weekly → daily</h3>
+    <nav class="mnav" aria-label="Models"><a href="#m-agentic" data-jump>Agentic AI planning</a><a href="#m-control-tower" data-jump>Control tower</a><a href="#m-load-planner" data-jump>Truck load planner</a><a href="#m-network" data-jump>Network optimization</a><a href="#m-sequencing" data-jump>Production sequencing</a><a href="#m-spares" data-jump>Spares inventory</a></nav>
+    <article class="feature" id="m-agentic">
+      <span class="tag">New · Agentic AI</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg></span><h3>Agentic AI supply planning: monthly → weekly → daily</h3></div>
       <p class="motto">Code does the maths. Agents decide and explain. Planners approve.</p>
       <p>Most companies plan the month, the week and the day in separate spreadsheets that drift apart. This system connects three planning engines through one set of inputs and puts nine AI agents on top of them, so the network plan, the production sequence and today’s trucks stay one plan.</p>
 
@@ -647,33 +656,67 @@ html{scroll-padding-top:5rem}
       <a class="btn primary" href="https://supply-planning-agentic-ai.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/><circle cx="12" cy="3.5" r="1"/></svg>Open the live demo</a>
     </article>
 
-    <div class="demos">
-      <div class="demo">
-        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span>
-        <h3>Truck load planner</h3>
-        <p>Recommends the vehicle mix with the best utilisation, not simply the biggest or smallest truck, then loads each one within floor, payload, stacking and height limits. Loaders get a planogram, numbered loading steps, a 3D view and a printable loading sheet, with multi-drop orders loaded in reverse stop order.</p>
-        <div class="links"><a href="https://optimum-vehicleload.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-      <div class="demo">
-        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span>
-        <h3>Network optimization</h3>
-        <p>A fictional multi-plant network. Pick which plants supply which markets, and whether to open new capacity, at the lowest total cost.</p>
-        <div class="links"><a href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-      <div class="demo">
-        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h6"/><path d="M17 4l3 2-3 2M20 16l-3 2 3 2"/></svg></span>
-        <h3>Production planning and sequencing</h3>
-        <p>Plans what each line makes and in what order, trading off changeover time against service level.</p>
-        <div class="links"><a href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-      <div class="demo">
-        <span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg></span>
-        <h3>Spares inventory optimization</h3>
-        <p>Sets stock levels for service spares with uncertain demand, balancing availability against inventory cost.</p>
-        <div class="links"><a href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener">Open demo <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
-      </div>
-    </div>
-    <p class="note">Demos are hosted on Streamlit and may take a few seconds to wake up the first time you open them.</p>
+    <article class="feature" id="m-control-tower">
+      <span class="tag">Visibility</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M7 12l3-3 2 2 4-4M8 20h8M12 16v4"/></svg></span><h3>Supply chain control tower</h3></div>
+      <p class="motto">One screen from plan to shelf. See it early, decide fast, deliver every order.</p>
+      <p>A live command centre built for leadership reviews and an always-on LED wall. It brings demand, supply, warehousing and delivery onto one screen, so a review starts with the exceptions rather than a stack of separate reports.</p>
+      <h4>How it works</h4>
+      <ol class="flow n5"><li><b>Pull the numbers</b><span>Sales, dispatch, stock, CFA space and co-pack output in one feed.</span></li><li><b>Score against norms</b><span>Days of cover against 12–18 days, CFA space banded healthy, tight or congested.</span></li><li><b>Show the trend</b><span>13-week trend, sales plan vs. actual MTD, co-pack adherence vs. 90% target.</span></li><li><b>Track today</b><span>Vehicles indented vs. placed by CFA lane, with in-transit status.</span></li><li class="human"><b>Raise exceptions</b><span>Open issues listed for a decision, refreshing every 60 seconds.</span></li></ol>
+      <h4>How it helps the business</h4>
+      <ul class="gains"><li><strong>One version of the truth.</strong> Sales, planning, logistics and leadership look at the same numbers in the same meeting.</li><li><strong>Problems surface early.</strong> Low cover, congested CFAs and missed vehicle placements show up the same day, not at month end.</li><li><strong>Shorter reviews.</strong> The meeting starts with exceptions and decisions instead of reconciling reports.</li><li><strong>Built for the wall.</strong> Full-screen mode and auto-refresh let it run all day on an LED screen.</li></ul>
+      <a class="btn primary" href="https://rupesh-chaudhari.github.io/control-tower/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M7 12l3-3 2 2 4-4M8 20h8M12 16v4"/></svg>Open the control tower</a>
+    </article>
+
+    <article class="feature" id="m-load-planner">
+      <span class="tag">Logistics</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span><h3>Truck load planner</h3></div>
+      <p class="motto">The right truck, filled right, loaded in the right order.</p>
+      <p>Picks the vehicle mix with the best utilisation for an order, not simply the biggest or smallest truck, then plans exactly how each truck is loaded. It is a mixed-integer model solved exactly, with a planogram the loading crew can follow.</p>
+      <h4>How it works</h4>
+      <ol class="flow n5"><li><b>Read the order</b><span>Cases by category and drop, with priorities and must-load minimums.</span></li><li><b>Apply the norms</b><span>Case size, weight and stacking layers against each truck’s floor, height and payload.</span></li><li><b>Pick the vehicles</b><span>Chooses the truck mix that carries the order with the least wasted capacity.</span></li><li><b>Load each truck</b><span>Lanes, layers and rows per category; multi-drop loaded in reverse stop order.</span></li><li class="human"><b>Print for loaders</b><span>Planogram, numbered steps from cab to doors, 3D view and a sign-off sheet.</span></li></ol>
+      <h4>How it helps the business</h4>
+      <ul class="gains"><li><strong>Fewer trucks, fuller trucks.</strong> Higher vehicle utilisation directly lowers freight cost per case.</li><li><strong>No guesswork at the dock.</strong> Loaders get a clear sheet, which speeds up loading and cuts damage.</li><li><strong>Multi-drop done right.</strong> First stop at the doors, last stop at the cab, so no reshuffling on the route.</li><li><strong>Instant loadability matrix.</strong> Shows the maximum cases of each category per truck type for quick planning.</li></ul>
+      <a class="btn primary" href="https://optimum-vehicleload.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Open the load planner</a>
+    </article>
+
+    <article class="feature" id="m-network">
+      <span class="tag">Network design</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg></span><h3>Network optimization</h3></div>
+      <p class="motto">Where to make it, where to ship it, and when to build more.</p>
+      <p>A fictional multi-plant network that decides which plants supply which markets and whether new capacity is worth opening, at the lowest total cost. It is the same type of model used for sourcing, co-pack and expansion decisions.</p>
+      <h4>How it works</h4>
+      <ol class="flow n4"><li><b>Set up the network</b><span>Plants, lines, markets, demand, costs and capacities.</span></li><li><b>Add the choices</b><span>Sourcing lanes, co-pack options and candidate new capacity.</span></li><li><b>Optimize</b><span>A mixed-integer model finds the lowest-cost plan that meets demand.</span></li><li><b>Compare scenarios</b><span>Change demand, costs or capacity and see the plan shift.</span></li></ol>
+      <h4>How it helps the business</h4>
+      <ul class="gains"><li><strong>Lower total cost.</strong> Balances production, freight and fixed costs together, not one at a time.</li><li><strong>Better capacity decisions.</strong> Shows when and where expansion pays back, before committing capital.</li><li><strong>Faster what-ifs.</strong> Scenarios that took weeks in spreadsheets run in minutes.</li><li><strong>A shared answer.</strong> Finance and operations debate assumptions, not arithmetic.</li></ul>
+      <a class="btn primary" href="https://sc-network-optimiser.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="12" r="2.2"/><circle cx="12" cy="12" r="1.6"/><path d="M7 7l3.6 4M7 17l3.6-4M13.6 12h3.2"/></svg>Open the network model</a>
+    </article>
+
+    <article class="feature" id="m-sequencing">
+      <span class="tag">Manufacturing</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h6"/><path d="M17 4l3 2-3 2M20 16l-3 2 3 2"/></svg></span><h3>Production planning and sequencing</h3></div>
+      <p class="motto">What each line makes, and in what order.</p>
+      <p>Plans production across lines and puts the runs in the best order, trading off changeover time against service level. It turns a volume target into a schedule a plant can run.</p>
+      <h4>How it works</h4>
+      <ol class="flow n4"><li><b>Take the targets</b><span>Volumes by product and the lines that can make them.</span></li><li><b>Apply line rules</b><span>Run rates, minimum batches and changeover times between products.</span></li><li><b>Sequence the runs</b><span>Orders products to cut changeovers while meeting due dates.</span></li><li><b>Review the plan</b><span>See line loading, changeover hours and service impact.</span></li></ol>
+      <h4>How it helps the business</h4>
+      <ul class="gains"><li><strong>More output from the same lines.</strong> Fewer, shorter changeovers free up production hours.</li><li><strong>Better service.</strong> Due dates are built into the sequence, not checked afterwards.</li><li><strong>Fewer surprises.</strong> Overloaded lines show up before the week starts.</li><li><strong>Clear trade-offs.</strong> Shows the cost of a changeover against the cost of a missed order.</li></ul>
+      <a class="btn primary" href="https://optimum-pro-sequence.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h9M4 12h13M4 18h6"/><path d="M17 4l3 2-3 2M20 16l-3 2 3 2"/></svg>Open the sequencing model</a>
+    </article>
+
+    <article class="feature" id="m-spares">
+      <span class="tag">Inventory</span>
+      <div class="fhead"><span class="icobox"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg></span><h3>Spares inventory optimization</h3></div>
+      <p class="motto">Enough spares to keep machines running, not a warehouse full of them.</p>
+      <p>Sets stock levels for service spares where demand is low, lumpy and uncertain, balancing the cost of holding stock against the cost of a machine being down.</p>
+      <h4>How it works</h4>
+      <ol class="flow n4"><li><b>Read the demand</b><span>Usage history for each spare, including long gaps between uses.</span></li><li><b>Model the risk</b><span>Uncertain demand and lead times for each part.</span></li><li><b>Set the levels</b><span>Stock and reorder points that meet the availability target at least cost.</span></li><li><b>Review the trade-off</b><span>See how much inventory each extra point of availability costs.</span></li></ol>
+      <h4>How it helps the business</h4>
+      <ul class="gains"><li><strong>Less money tied up.</strong> Cuts stock of slow-moving parts that rarely get used.</li><li><strong>Higher uptime.</strong> Critical spares are protected, so downtime from missing parts falls.</li><li><strong>A clear policy.</strong> Every stock level comes with its reason, not a rule of thumb.</li><li><strong>Works for lumpy demand.</strong> Built for parts that standard forecasting handles badly.</li></ul>
+      <a class="btn primary" href="https://semicon-spares-optimizer.streamlit.app" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5l9-4.5 9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg>Open the spares model</a>
+    </article>
+
+    <p class="note">The control tower runs on sample data. Demos are hosted on Streamlit and may take a few seconds to wake up the first time you open them.</p>
   </section>
 </div>
 
@@ -724,6 +767,7 @@ html{scroll-padding-top:5rem}
     document.title=(id==='about'?base+' | Supply chain planning, logistics and optimization':pg.dataset.title+' | '+base);
     window.scrollTo(0,0);
   }
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-jump]');if(!a)return;e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
   window.addEventListener('hashchange',show);
   show();
 })();
